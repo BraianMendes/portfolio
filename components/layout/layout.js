@@ -56,7 +56,10 @@ export default function Layout({ children, home }) {
             <div className={styles.logo}>
               <img src="/images/devjane.png" alt="" />
             </div>
-            <button className={`${styles.nav_toggle} nav_toggle`} aria-label="toggle navigation">
+            <button
+              className={`${styles.nav_toggle} nav_toggle`}
+              aria-label="toggle navigation"
+            >
               <span className={styles.hamburger}></span>
             </button>
             <nav class="nav" className={styles.nav}>
@@ -104,13 +107,38 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">
-            <a>← Back to home</a>
-          </Link>
-        </div>
-      )}
+      {/* <!-- Footer --> */}
+      <footer className={styles.footer}>
+        {/* <!-- replace with your own email address --> */}
+        <a
+          href="mailto:00.braian.dev@gmail.com"
+          className={styles.footer__link}
+        >
+          00.braian.dev@gmail.com
+        </a>
+        <ul className={styles.social_list}>
+          <li className={styles.social_list__item}>
+            <a className={styles.social_list__link} href="https://codepen.io">
+              <i class="fab fa-codepen"></i>
+            </a>
+          </li>
+          <li className={styles.social_list__item}>
+            <a className={styles.social_list__link} href="http://dribbble.com">
+              <i class="fab fa-dribbble"></i>
+            </a>
+          </li>
+          <li className={styles.social_list__item}>
+            <a className={styles.social_list__link} href="https://twitter.com">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
+          <li className={styles.social_list__item}>
+            <a className={styles.social_list__link} href="https://github.com">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        </ul>
+      </footer>
     </div>
   );
 }

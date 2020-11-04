@@ -1,7 +1,5 @@
-import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout/layout.js";
+import Layout from "../components/layout/layout.js";
 import styles from "../styles/index.module.css";
-import utilStyles from "../styles/utils.module.css";
 
 export default function Home() {
   return (
@@ -209,41 +207,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-
-      {/* <!-- Footer --> */}
-      <footer className={styles.footer}>
-        {/* <!-- replace with your own email address --> */}
-        <a
-          href="mailto:00.braian.dev@gmail.com"
-          className={styles.footer__link}
-        >
-          00.braian.dev@gmail.com
-        </a>
-        <ul className={styles.social_list}>
-          <li className={styles.social_list__item}>
-            <a className={styles.social_list__link} href="https://codepen.io">
-              <i class="fab fa-codepen"></i>
-            </a>
-          </li>
-          <li className={styles.social_list__item}>
-            <a className={styles.social_list__link} href="http://dribbble.com">
-              <i class="fab fa-dribbble"></i>
-            </a>
-          </li>
-          <li className={styles.social_list__item}>
-            <a className={styles.social_list__link} href="https://twitter.com">
-              <i class="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li className={styles.social_list__item}>
-            <a className={styles.social_list__link} href="https://github.com">
-              <i class="fab fa-github"></i>
-            </a>
-          </li>
-        </ul>
-      </footer>
     </Layout>
   );
-}
-
-<style jsx>{``}</style>;
+} 
