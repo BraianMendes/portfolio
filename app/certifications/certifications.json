@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Cisco Networking Academy - Introduction to Modern AI",
+    "issuer": "Cisco",
+    "date": "2025-05-26",
+    "image": "/certifications/cisco/introduction-to-modern-ai.png",
+    "tags": ["AI", "Cisco"],
+    "slug": "cisco-modern-ai",
+    "certificateUrl": "https://www.credly.com/badges/d089d3cc-5253-44d3-902f-a91940fc5be7"
+  }
+]

@@ -11,32 +11,35 @@
     background-image:
       repeating-linear-gradient(
         60deg,
-        rgba(255,255,255,0.04) 0,
-        rgba(255,255,255,0.04) 1px,
+        rgba(255, 255, 255, 0.04) 0,
+        rgba(255, 255, 255, 0.04) 1px,
         transparent 1px,
         transparent 29px
       ),
       repeating-linear-gradient(
         -60deg,
-        rgba(255,255,255,0.04) 0,
-        rgba(255,255,255,0.04) 1px,
+        rgba(255, 255, 255, 0.04) 0,
+        rgba(255, 255, 255, 0.04) 1px,
         transparent 1px,
         transparent 29px
       ),
       /* 2) Linhas horizontais para fechar o hexágono */
-      repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.04) 0,
-        rgba(255,255,255,0.04) 1px,
-        transparent 1px,
-        transparent 17.32px
-      );
+        repeating-linear-gradient(
+          0deg,
+          rgba(255, 255, 255, 0.04) 0,
+          rgba(255, 255, 255, 0.04) 1px,
+          transparent 1px,
+          transparent 17.32px
+        );
 
     /* 3) Ajusta o tamanho de cada célula hexagonal */
     background-size: 50px 86.6px;
 
     /* 4) Offset da 3ª camada para alinhamento */
-    background-position: 0 0, 0 0, 25px 43.3px;
+    background-position:
+      0 0,
+      0 0,
+      25px 43.3px;
 
     /* 5) Torna o padrão clicável e visível */
     pointer-events: none;
