@@ -1,13 +1,23 @@
 "use client";
-import { title } from "@/components/primitives";
 import {
-  Card, CardHeader, CardBody, CardFooter,
-  Tabs, Tab, Chip, Image,
-  Snippet, Accordion, AccordionItem,
-  Button
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Tabs,
+  Tab,
+  Chip,
+  Image,
+  Snippet,
+  Accordion,
+  AccordionItem,
+  Button,
 } from "@heroui/react";
 import { Github } from "lucide-react";
+
 import data from "./ai-chatbot.json";
+
+import { title } from "@/components/primitives";
 
 // Define the GalleryImage type based on expected structure
 type GalleryImage = {
@@ -35,12 +45,19 @@ export default function AiChatbotPage() {
           <h2 className="text-xl font-semibold">{project.subtitle}</h2>
           <div className="flex gap-2 mt-1">
             {project.tags.map((t: string) => (
-              <Chip key={t} variant="light">{t}</Chip>
+              <Chip key={t} variant="light">
+                {t}
+              </Chip>
             ))}
           </div>
         </CardHeader>
         <CardBody className="p-0">
-          <Image src={project.coverImage} alt={project.title} width={800} height={450} />
+          <Image
+            alt={project.title}
+            height={450}
+            src={project.coverImage}
+            width={800}
+          />
         </CardBody>
         <CardFooter className="flex gap-4">
           <Button
@@ -60,7 +77,7 @@ export default function AiChatbotPage() {
       </Card>
 
       {/* Abas */}
-      <Tabs defaultSelectedKey="overview" className="mb-8">
+      <Tabs className="mb-8" defaultSelectedKey="overview">
         <Tab key="overview" title="Overview">
           <p className="mb-4">{project.description}</p>
           <h3 className="font-semibold mb-2">História</h3>
@@ -71,11 +88,11 @@ export default function AiChatbotPage() {
             {project.gallery.map((img: GalleryImage) => (
               <Image
                 key={img.src}
-                src={img.src}
                 alt={img.alt}
-                width={300}
-                height={200}
                 className="rounded-lg"
+                height={200}
+                src={img.src}
+                width={300}
               />
             ))}
           </div>
@@ -83,7 +100,9 @@ export default function AiChatbotPage() {
         <Tab key="tech" title="Tech Stack">
           <div className="flex flex-wrap gap-3">
             {project.techStack.map((tech: string) => (
-              <Chip key={tech} variant="flat">{tech}</Chip>
+              <Chip key={tech} variant="flat">
+                {tech}
+              </Chip>
             ))}
           </div>
         </Tab>

@@ -1,10 +1,11 @@
 "use client";
 
+import { button as buttonStyles } from "@heroui/theme";
+import { Link } from "@heroui/link";
+
 import { title, subtitle } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 import { GithubIcon } from "@/components/icons";
-import { button as buttonStyles } from "@heroui/theme";
-import { Link } from "@heroui/link";
 
 export default function Home() {
   return (
@@ -22,26 +23,26 @@ export default function Home() {
       {/* Botões de Ação */}
       <div className="flex gap-4 mt-8">
         <Link
-          href="/projects"
           className={buttonStyles({
             color: "primary",
             size: "lg",
             variant: "shadow",
             radius: "full",
           })}
+          href="/projects"
         >
           Browse My Projects
         </Link>
         <Link
           isExternal
-          href={siteConfig.links.github}
           className={buttonStyles({
             size: "lg",
             variant: "bordered",
             radius: "full",
           })}
+          href={siteConfig.links.github}
         >
-          <GithubIcon size={20} className="mr-2" />
+          <GithubIcon className="mr-2" size={20} />
           GitHub
         </Link>
       </div>

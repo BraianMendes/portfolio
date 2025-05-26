@@ -2,20 +2,15 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import projectsData from "./projects.json";
-import { title } from "@/components/primitives";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Button,
-  Chip,
-  Image
-} from "@heroui/react";
+import { Card, CardBody, CardFooter, Button, Chip, Image } from "@heroui/react";
 
-// Docs HeroUI Card :contentReference[oaicite:0]{index=0}  
-// Docs HeroUI Button :contentReference[oaicite:1]{index=1}  
-// Docs HeroUI Chip   :contentReference[oaicite:2]{index=2}  
+import projectsData from "./projects.json";
+
+import { title } from "@/components/primitives";
+
+// Docs HeroUI Card :contentReference[oaicite:0]{index=0}
+// Docs HeroUI Button :contentReference[oaicite:1]{index=1}
+// Docs HeroUI Chip   :contentReference[oaicite:2]{index=2}
 
 export default function ProjectsPage() {
   const router = useRouter();
@@ -23,7 +18,9 @@ export default function ProjectsPage() {
   // Extrai lista única de tags dos projetos
   const allTags = useMemo(() => {
     const set = new Set<string>();
+
     projectsData.forEach((p) => p.tags.forEach((t) => set.add(t)));
+
     return Array.from(set);
   }, []);
 
@@ -33,6 +30,7 @@ export default function ProjectsPage() {
   // Filtra projetos conforme a tag selecionada
   const filtered = useMemo(() => {
     if (!selectedTag) return projectsData;
+
     return projectsData.filter((p) => p.tags.includes(selectedTag));
   }, [selectedTag]);
 
@@ -67,16 +65,16 @@ export default function ProjectsPage() {
             key={proj.id}
             isHoverable
             isPressable
-            onPress={() => router.push(`/projects/${proj.slug}`)}
             className="flex flex-col"
+            onPress={() => router.push(`/projects/${proj.slug}`)}
           >
             {/* Imagem de capa */}
             <CardBody className="p-0">
               <Image
-                src={proj.image}
                 alt={proj.title}
-                width={400}
                 height={250}
+                src={proj.image}
+                width={400}
               />
             </CardBody>
 
@@ -85,7 +83,7 @@ export default function ProjectsPage() {
               <h3 className="text-lg font-semibold">{proj.title}</h3>
               <div className="flex gap-2 mt-2">
                 {proj.tags.map((t) => (
-                  <Chip key={t} variant="flat" color="primary">
+                  <Chip key={t} color="primary" variant="flat">
                     {t}
                   </Chip>
                 ))}
