@@ -1,0 +1,16 @@
+[
+  {
+    "id": "ai-chatbot",
+    "title": "AI Chatbot",
+    "image": "/images/projects/ai-chatbot.png",
+    "tags": ["AI"],
+    "slug": "ai-chatbot"
+  },
+  {
+    "id": "college-portal",
+    "title": "College Portal",
+    "image": "/images/projects/college-portal.png",
+    "tags": ["College"],
+    "slug": "college-portal"
+  }
+]

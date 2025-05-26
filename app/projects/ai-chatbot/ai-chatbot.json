@@ -1,0 +1,49 @@
+{
+  "id": "ai-chatbot",
+  "title": "AI Chatbot",
+  "subtitle": "Chatbot conversacional com OpenAI e Node.js",
+  "tags": ["AI", "NLP", "Chatbot"],
+  "coverImage": "/images/projects/ai-chatbot-cover.png",
+  "githubUrl": "https://github.com/seu-usuario/ai-chatbot",
+  "demoUrl": "https://ai-chatbot.seudominio.com",
+  "description": "O AI Chatbot é um assistente conversacional que utiliza o OpenAI GPT-4 para entender e responder perguntas em linguagem natural. Implementado em Next.js no front-end e Node.js no back-end, suporta contextos de conversa, personalização de respostas e integração com múltiplas fontes de dados.",
+  "history": "O projeto começou como um protótipo para demonstrar o uso da API do OpenAI em um ambiente web. Evoluiu para incluir gerenciamento de sessão, armazenamento de histórico de conversas em MongoDB e deploy em Vercel com CI/CD configurado.",
+  "gallery": [
+    {
+      "src": "/images/projects/ai-chatbot-1.png",
+      "alt": "Interface de chat com mensagens de usuário e respostas do bot"
+    },
+    {
+      "src": "/images/projects/ai-chatbot-2.png",
+      "alt": "Painel de analytics de conversas e métricas de uso"
+    }
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "Node.js",
+    "TypeScript",
+    "OpenAI API",
+    "MongoDB",
+    "Tailwind CSS",
+    "HeroUI"
+  ],
+  "codeSnippet": "import OpenAI from 'openai';\n\nconst openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });\n\nexport async function getChatResponse(prompt: string) {\n  const response = await openai.chat.completions.create({\n    model: 'gpt-4',\n    messages: [{ role: 'user', content: prompt }]\n  });\n  return response.choices[0].message?.content;\n}",
+  "resources": [
+    {
+      "title": "Artigo: Construindo um Chatbot com GPT-4",
+      "description": "Passo a passo detalhado publicado no Medium",
+      "link": "https://medium.com/seu-usuario/ai-chatbot-gpt4"
+    },
+    {
+      "title": "Slides de Apresentação",
+      "description": "Deck usado em conferência Next.js Conf 2025",
+      "link": "https://slides.com/seu-usuario/ai-chatbot"
+    },
+    {
+      "title": "Vídeo Demo",
+      "description": "Demonstração das principais funcionalidades",
+      "link": "https://youtu.be/seu-video-id"
+    }
+  ]
+}
