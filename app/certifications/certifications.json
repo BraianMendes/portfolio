@@ -20,10 +20,23 @@
     "image": "/certifications/cisco/introduction-to-data-science.png",
     "tags": [
       "AI",
-      "Data Science",	
+      "Data Science",
       "Cisco"
     ],
     "slug": "cisco-introduction-to-data-science",
     "certificateUrl": "https://www.credly.com/badges/9f24248d-22dc-449f-8208-f82410923e83/public_url"
+  },
+  {
+    "id": 1,
+    "title": "AWS - Foundations of Prompt Engineering",
+    "issuer": "AWS",
+    "date": "2025-05-31",
+    "image": "/certifications/aws/foundations-of-prompt-engineering.png",
+    "tags": [
+      "AI",
+      "Prompt Engineering",
+      "AWS"
+    ],
+    "slug": "aws-foundations-of-prompt-engineering"
   }
 ]

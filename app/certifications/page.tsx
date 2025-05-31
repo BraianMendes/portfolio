@@ -92,18 +92,61 @@ export default function CertificationsPage() {
 
       {/* Certification Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-8">
-        {filtered.map((cert) => (
-          <a
-            key={cert.id}
-            className="contents"
-            href={cert.certificateUrl}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
+        {filtered.map((cert) =>
+          cert.certificateUrl ? (
+            <a
+              key={cert.id}
+              className="contents"
+              href={cert.certificateUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Card
+                isHoverable
+                isPressable
+                className="flex flex-col cursor-pointer"
+              >
+                <CardBody className="p-0">
+                  <div className="w-full h-[120px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                    <Image
+                      alt={cert.title}
+                      className="object-contain py-1 w-full h-full"
+                      height={120}
+                      src={cert.image}
+                      style={{ maxHeight: 120, maxWidth: "100%" }}
+                      width={180}
+                    />
+                  </div>
+                </CardBody>
+                <CardFooter className="flex flex-col items-start p-4 w-full">
+                  <h3 className="text-md font-semibold">{cert.title}</h3>
+                  <div className="text-sm text-gray-500 my-1">{cert.issuer}</div>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {cert.tags.map((t) => (
+                      <Chip key={t} color="primary" variant="flat">
+                        {t}
+                      </Chip>
+                    ))}
+                    <Chip color="default" variant="flat">
+                      {new Date(cert.date + "T00:00:00Z").toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "short",
+                          day: "2-digit",
+                          timeZone: "UTC",
+                        },
+                      )}
+                    </Chip>
+                  </div>
+                </CardFooter>
+              </Card>
+            </a>
+          ) : (
             <Card
+              key={cert.id}
               isHoverable
-              isPressable
-              className="flex flex-col cursor-pointer"
+              className="flex flex-col cursor-default"
             >
               <CardBody className="p-0">
                 <div className="w-full h-[120px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden">
@@ -140,8 +183,8 @@ export default function CertificationsPage() {
                 </div>
               </CardFooter>
             </Card>
-          </a>
-        ))}
+          ),
+        )}
       </div>
     </div>
   );
