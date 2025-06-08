@@ -38,5 +38,19 @@
       "AWS"
     ],
     "slug": "aws-foundations-of-prompt-engineering"
+  },
+  {
+    "id": 1,
+    "title": "Cisco Networking Academy - Introduction to Internet of Things (IoT)",
+    "issuer": "Cisco",
+    "date": "2025-06-08",
+    "image": "/certifications/cisco/introduction-to-iot.png",
+    "tags": [
+      "AI",
+      "IoT",
+      "Cisco"
+    ],
+    "slug": "cisco-introduction-to-iot",
+    "certificateUrl": "https://www.credly.com/badges/69c87b58-9680-4935-abae-8eae5513dd6a/public_url"
   }
 ]
