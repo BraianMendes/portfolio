@@ -20,7 +20,9 @@
     "image": "/certifications/cisco/introduction-to-data-science.png",
     "tags": [
       "AI",
+      "Big Data",
       "Data Science",
+      "Data Analytics",
       "Cisco"
     ],
     "slug": "cisco-introduction-to-data-science",
@@ -48,9 +50,24 @@
     "tags": [
       "AI",
       "IoT",
+      "Big Data",
+      "Data Science",
       "Cisco"
     ],
     "slug": "cisco-introduction-to-iot",
+    "certificateUrl": "https://www.credly.com/badges/69c87b58-9680-4935-abae-8eae5513dd6a/public_url"
+  },
+  {
+    "id": 1,
+    "title": "Cisco Networking Academy - Python Essentials 1",
+    "issuer": "Cisco",
+    "date": "2025-06-08",
+    "image": "/certifications/cisco/python-essentials-1.1.png",
+    "tags": [
+      "Python",
+      "Cisco"
+    ],
+    "slug": "cisco-python-essentials-1.1",
     "certificateUrl": "https://www.credly.com/badges/69c87b58-9680-4935-abae-8eae5513dd6a/public_url"
   }
 ]
