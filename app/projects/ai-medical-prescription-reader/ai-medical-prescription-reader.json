@@ -1,0 +1,48 @@
+{
+  "id": "ai-medical-prescription-reader",
+  "title": "Intelligent Medical Prescription Reader",
+  "subtitle": "POC for intelligent reading of medical prescriptions with OCR and NLP",
+  "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
+  "coverImage": "/images/projects/ai-medical-prescription-reader.png",
+  "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader",
+  "demoUrl": "",
+  "description": "POC web app using Next.js, Tesseract.js (OCR), and Compromise (NLP) to read, interpret, and standardize information extracted from medical prescriptions in image format. Automates the reading and understanding of prescriptions using AI, making the process faster, safer, and less prone to human error.",
+  "overview": "Automates the reading and understanding of medical prescriptions using artificial intelligence. Uses advanced NLP techniques to interpret extracted texts, even with writing variations, OCR errors, or different prescription formats.",
+  "howItWorks": [
+    "User uploads a prescription image.",
+    "Text extraction with Tesseract.js (OCR).",
+    "Text normalization and processing with Compromise (NLP), identifying drug name, dosage, and quantity.",
+    "Standardization of drug names and return of structured data.",
+    "Uses a local and simplified database for simulation only."
+  ],
+  "nlpHighlights": "The project's differential is the use of NLP to interpret the extracted text, going beyond simple reading. Compromise allows the identification of patterns, drug names, and quantities, even with common OCR or handwriting errors.",
+  "installation": [
+    "git clone https://github.com/BraianMendes/AI_Medical_Prescription_Reader.git",
+    "cd AI_Medical_Prescription_Reader",
+    "npm install # or yarn install",
+    "npm run populate-db # or yarn populate-db (optional)",
+    "npm run dev # or yarn dev"
+  ],
+  "projectStructure": [
+    "src/app/page.tsx — Main page and upload interface.",
+    "src/utils/ocr.ts — OCR functions with Tesseract.js.",
+    "src/utils/parser.ts — NLP and normalization functions with Compromise.",
+    "scripts/populate-db.ts — Script to populate the sample database (optional)."
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "Node.js",
+    "TypeScript",
+    "Tesseract.js",
+    "Compromise",
+    "Tailwind CSS",
+    "HeroUI"
+  ],
+  "codeSnippet": "import Tesseract from 'tesseract.js';\nimport nlp from 'compromise';\n\nexport async function extractPrescriptionData(image) {\n  const { data: { text } } = await Tesseract.recognize(image, 'eng');\n  const doc = nlp(text);\n  // Logic to identify drugs, dosage, and quantity\n  // ...\n  return {/* structured data */};\n}",
+  "limitations": [
+    "Project created for technical demonstration (POC) only.",
+    "Local and limited database, does not cover all drugs.",
+    "Not recommended for real or production use."
+  ]
+}

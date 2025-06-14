@@ -1,16 +1,35 @@
 [
   {
-    "id": "ai-chatbot",
-    "title": "AI Chatbot",
-    "image": "/images/projects/ai-chatbot.png",
-    "tags": ["AI"],
-    "slug": "ai-chatbot"
-  },
-  {
-    "id": "college-portal",
-    "title": "College Portal",
-    "image": "/images/projects/college-portal.png",
-    "tags": ["College"],
-    "slug": "college-portal"
+    "id": "ai-medical-prescription-reader",
+    "title": "Intelligent Medical Prescription Reader",
+    "description": "Proof of Concept (POC) web app built with Next.js, demonstrating OCR and NLP to read, interpret, and standardize information from medical prescriptions in image format. Automates reading and understanding prescriptions using AI, making the process faster, safer, and less prone to human error. Uses Tesseract.js for OCR and compromise for NLP to extract and normalize drug names, dosages, and quantities, even with writing variations or OCR errors. Not intended for production or real medical use.",
+    "overview": "Uploads a prescription image, extracts text with Tesseract.js, processes and normalizes with compromise NLP, and returns structured drug info. Uses a local, simplified database for simulation.",
+    "howItWorks": [
+      "User uploads a photo of a medical prescription.",
+      "Tesseract.js extracts text from the image.",
+      "Compromise NLP normalizes and processes the text, identifying drug name, dosage, and quantity.",
+      "System standardizes drug names and returns structured data.",
+      "Uses a local, limited database for demonstration only."
+    ],
+    "tools": [
+      "Tesseract.js (OCR)",
+      "Compromise (NLP)",
+      "Next.js"
+    ],
+    "limitations": [
+      "POC for technical demonstration only.",
+      "Local, limited database (not comprehensive).",
+      "Not for real or production use."
+    ],
+    "projectStructure": [
+      "src/app/page.tsx — Main page and upload interface.",
+      "src/utils/ocr.ts — OCR functions with Tesseract.js.",
+      "src/utils/parser.ts — NLP functions with compromise.",
+      "scripts/populate-db.ts — Sample database script (optional)."
+    ],
+    "image": "/images/projects/ai-medical-prescription-reader.png",
+    "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
+    "slug": "ai-medical-prescription-reader",
+    "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader"
   }
 ]

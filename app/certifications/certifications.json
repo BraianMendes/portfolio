@@ -84,5 +84,40 @@
       "Gran"
     ],
     "slug": "gran-data-analysis-and-business-intelligence"
+  },
+  {
+    "id": 1,
+    "title": "Gran - Legal Responsibility in Digital Environments",
+    "issuer": "Gran",
+    "date": "2025-06-12",
+    "image": "/certifications/gran/legal-responsibility-in-digital-environments.png",
+    "tags": [
+      "Data Protection",
+      "Digital Law",
+      "GDPR",
+      "LGPD",
+      "Gran"
+    ],
+    "slug": "gran-legal-responsibility-in-digital-environments"
+  },
+  {
+    "id": 1,
+    "title": "Gran - Education and Innovation in Practice: Maker Culture, AI and Robotics",
+    "issuer": "Gran",
+    "date": "2025-06-12",
+    "image": "/certifications/gran/education-and-innovation-in-practice-maker-culture-AI-and-robotics.png",
+    "tags": [
+      "IoT",
+      "Robotics",
+      "Maker Culture",
+      "AI",
+      "Tinkercad",
+      "Arduino",
+      "Raspberry Pi",
+      "Micro:Bit",
+      "Python",
+      "Gran"
+    ],
+    "slug": "gran-education-and-innovation-in-practice-maker-culture-AI-and-robotics"
   }
 ]

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides",
+    "cover": "/books/design-patterns.jpg",
+    "area": ["Software Engineering", "Design"],
+    "year": 2023,
+    "recommendation": "O melhor ponto de partida para arquitetura orientada a objetos.",
+    "slug": "design-patterns"
+  },
+  {
+    "id": 2,
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "cover": "/books/clean-code.jpg",
+    "area": ["Programming", "Software Engineering"],
+    "year": 2022,
+    "recommendation": "Leitura obrigatória para desenvolvedores de todos os níveis.",
+    "slug": "clean-code"
+  },
+  {
+    "id": 3,
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "cover": "/books/thinking-fast-and-slow.jpg",
+    "area": ["Psychology", "Decision Making"],
+    "year": 2024,
+    "recommendation": "Explica a mente humana de forma brilhante. Excelente para soft skills.",
+    "slug": "thinking-fast-and-slow"
+  }
+]

@@ -1,92 +1,59 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { Card, CardBody, CardFooter, Button, Chip, Image } from "@heroui/react";
-
+import { Card, CardBody, CardFooter, Chip, Image, Button, Tooltip } from "@heroui/react";
 import projectsData from "./projects.json";
-
 import { title } from "@/components/primitives";
-
-// Docs HeroUI Card :contentReference[oaicite:0]{index=0}
-// Docs HeroUI Button :contentReference[oaicite:1]{index=1}
-// Docs HeroUI Chip   :contentReference[oaicite:2]{index=2}
+import { GithubIcon } from "@/components/icons";
 
 export default function ProjectsPage() {
   const router = useRouter();
 
-  // Extrai lista única de tags dos projetos
-  const allTags = useMemo(() => {
-    const set = new Set<string>();
-
-    projectsData.forEach((p) => p.tags.forEach((t) => set.add(t)));
-
-    return Array.from(set);
-  }, []);
-
-  // Estado do filtro (string vazia = sem filtro, exibe todos)
-  const [selectedTag, setSelectedTag] = useState<string>("");
-
-  // Filtra projetos conforme a tag selecionada
-  const filtered = useMemo(() => {
-    if (!selectedTag) return projectsData;
-
-    return projectsData.filter((p) => p.tags.includes(selectedTag));
-  }, [selectedTag]);
-
   return (
-    <div className="px-8 py-6">
-      <h1 className={title()}>Projects</h1>
-
-      {/* Seletor de filtros */}
-      <div className="flex gap-4 mt-6">
-        {/* Botão para remover filtro */}
-        <Button
-          variant={!selectedTag ? "solid" : "light"}
-          onPress={() => setSelectedTag("")}
-        >
-          All
-        </Button>
-        {allTags.map((tag) => (
-          <Button
-            key={tag}
-            variant={selectedTag === tag ? "solid" : "light"}
-            onPress={() => setSelectedTag(tag)}
-          >
-            {tag}
-          </Button>
-        ))}
-      </div>
-
-      {/* Grid de cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-        {filtered.map((proj) => (
+    <div className="max-w-6xl mx-auto px-4 py-10">
+      <h1 className={`${title()} mb-6`}>Projects</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+        {projectsData.map((project) => (
           <Card
-            key={proj.id}
+            key={project.id}
             isHoverable
             isPressable
-            className="flex flex-col"
-            onPress={() => router.push(`/projects/${proj.slug}`)}
+            className="group flex flex-col max-w-xs mx-auto transition-transform hover:scale-[1.03] hover:shadow-xl rounded-2xl"
+            onPress={() => router.push(`/projects/${project.slug}`)}
           >
-            {/* Imagem de capa */}
             <CardBody className="p-0">
-              <Image
-                alt={proj.title}
-                height={250}
-                src={proj.image}
-                width={400}
-              />
+              <div className="relative">
+                <Image
+                  alt={project.title}
+                  height={180}
+                  src={project.image}
+                  width={360}
+                  className="object-cover w-full h-[180px] rounded-t-2xl"
+                />
+                <Tooltip content="Ver no GitHub">
+                  <Button
+                    as="a"
+                    href={project.githubUrl}
+                    target="_blank"
+                    variant="light"
+                    className="absolute top-3 right-3 z-10 p-1 rounded-full bg-white/80 backdrop-blur hover:bg-white"
+                    onClick={(e) => e.stopPropagation()}
+                    aria-label="GitHub"
+                  >
+                    <GithubIcon size={20} />
+                  </Button>
+                </Tooltip>
+              </div>
             </CardBody>
-
-            {/* Rodapé com título e tags */}
-            <CardFooter className="flex flex-col items-start p-4">
-              <h3 className="text-lg font-semibold">{proj.title}</h3>
-              <div className="flex gap-2 mt-2">
-                {proj.tags.map((t) => (
-                  <Chip key={t} color="primary" variant="flat">
-                    {t}
-                  </Chip>
+            <CardFooter className="flex flex-col items-start gap-2 p-4">
+              <h3 className="text-base font-semibold truncate w-full">{project.title}</h3>
+              <div className="flex flex-wrap gap-1 w-full">
+                {project.tags.slice(0, 4).map((t) => (
+                  <Chip key={t} variant="flat" className="text-xs px-2 py-0.5">{t}</Chip>
                 ))}
+                {project.tags.length > 4 && (
+                  <Chip variant="flat" className="text-xs px-2 py-0.5">+{project.tags.length - 4}</Chip>
+                )}
               </div>
             </CardFooter>
           </Card>
