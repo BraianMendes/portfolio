@@ -182,12 +182,19 @@ export default function CertificationsPage() {
               <div
                 className="w-full h-[140px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden group relative"
                 style={{ minHeight: 140, maxHeight: 180, cursor: "zoom-in" }}
+                role="button"
+                tabIndex={0}
+                aria-label={`View certificate ${cert.title} in detail`}
                 onClick={(e) => {
                   e.stopPropagation();
                   openModal(cert, "image");
                 }}
-                tabIndex={0}
-                aria-label={`View certificate ${cert.title} in detail`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    openModal(cert, "image");
+                  }
+                }}
               >
                 <Image
                   alt={cert.title}
