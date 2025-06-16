@@ -5,7 +5,6 @@ import { Card, CardBody, CardFooter, Chip, Image } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
-// Tipagem
 type Book = {
     id: number;
     title: string;
@@ -22,7 +21,6 @@ const booksData: Book[] = booksDataRaw;
 
 import { title } from "@/components/primitives";
 
-// Helpers para pegar áreas e anos únicos
 function getAllAreas(data: Book[]) {
     const set = new Set<string>();
     data.forEach((book) => book.area.forEach((a) => set.add(a)));
@@ -34,7 +32,6 @@ function getAllYears(data: Book[]) {
     return Array.from(set).sort((a, b) => b - a);
 }
 
-// Popover para filtro (reutilizável)
 function FilterPopover({
     label,
     items,

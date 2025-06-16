@@ -4,10 +4,8 @@
 
 @layer utilities {
   .bg-hexagon-pattern {
-    /* fundo totalmente preto */
     background-color: #000;
 
-    /* 1) Linhas a 60° e -60° */
     background-image:
       repeating-linear-gradient(
         60deg,
@@ -23,7 +21,6 @@
         transparent 1px,
         transparent 29px
       ),
-      /* 2) Linhas horizontais para fechar o hexágono */
         repeating-linear-gradient(
           0deg,
           rgba(255, 255, 255, 0.04) 0,
@@ -32,23 +29,19 @@
           transparent 17.32px
         );
 
-    /* 3) Ajusta o tamanho de cada célula hexagonal */
     background-size: 50px 86.6px;
 
-    /* 4) Offset da 3ª camada para alinhamento */
     background-position:
       0 0,
       0 0,
       25px 43.3px;
 
-    /* 5) Torna o padrão clicável e visível */
     pointer-events: none;
     opacity: 0.3;
   }
 
   @keyframes hexagon-pan {
     to {
-      /* move cada layer metade do tile para criar deslocamento */
       background-position:
         25px 43.3px,
         -25px 43.3px,
