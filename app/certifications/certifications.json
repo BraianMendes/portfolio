@@ -72,6 +72,19 @@
   },
   {
     "id": 1,
+    "title": "Cisco Networking Academy - Python Essentials 2",
+    "issuer": "Cisco",
+    "date": "2025-06-16",
+    "image": "/certifications/cisco/python-essentials-2.png",
+    "tags": [
+      "Python",
+      "Cisco"
+    ],
+    "slug": "cisco-python-essentials-2",
+    "certificateUrl": "https://www.credly.com/badges/0fd37988-daab-4169-8c88-8b7453021e2b/public_url"
+  },
+  {
+    "id": 1,
     "title": "Gran - Data Analytics and Business Intelligence",
     "issuer": "Gran",
     "date": "2025-06-11",

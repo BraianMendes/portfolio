@@ -3,7 +3,7 @@ import { Link } from "@heroui/link";
 
 export function Footer() {
     return (
-        <footer className="w-full border-t border-neutral-800 py-6 flex flex-col items-center justify-center text-xs text-gray-500">
+        <footer className="w-full border-t border-neutral-800 py-6 flex flex-col items-center justify-center text-xs text-gray-500 mt-36">
             <span>
                 Created by{" "}
                 <Link
