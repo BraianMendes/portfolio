@@ -159,7 +159,7 @@ export default function ProjectsPage() {
             className="flex flex-col cursor-pointer min-h-[340px] bg-neutral-900 border border-neutral-800 shadow-lg transition duration-150 ease-out hover:shadow-xl focus:shadow-xl active:shadow-lg"
             onClick={() => router.push(`/projects/${project.slug}`)}
           >
-            <CardBody className="p-0">
+            <CardBody className="p-0 flex flex-col">
               <div className="w-full h-[140px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden group relative"
                 style={{ minHeight: 140, maxHeight: 180, cursor: "pointer" }}
               >
@@ -187,9 +187,11 @@ export default function ProjectsPage() {
                   </Tooltip>
                 )}
               </div>
+              <h3 className="font-bold mt-4 mb-1 text-white leading-snug text-base px-4 text-center">
+                {project.title}
+              </h3>
             </CardBody>
             <CardFooter className="flex flex-col items-start pt-0 pb-4 px-4 w-full">
-              <h3 className="font-bold mb-1 text-white leading-snug self-start text-base">{project.title}</h3>
               <div className="text-xs text-neutral-400 mb-1">{project.tools.join(", ")}</div>
               <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 items-center">
                 {project.tags.map((t, idx) => (

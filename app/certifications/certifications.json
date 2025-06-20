@@ -132,5 +132,25 @@
       "Gran"
     ],
     "slug": "gran-education-and-innovation-in-practice-maker-culture-AI-and-robotics"
+  },
+  {
+    "id": 1,
+    "title": "Cisco Networking Academy - Data Analytics Essentials",
+    "issuer": "Cisco",
+    "date": "2025-06-19",
+    "image": "/certifications/cisco/data-analytics-essentials.png",
+    "tags": [
+      "Dashboard",
+      "Data Analytics",
+      "Data Analysis",
+      "Data Storytelling",
+      "Data Visualization",
+      "Excel",
+      "SQL",
+      "Tableau",
+      "Cisco"
+    ],
+    "slug": "cisco-data-analytics-essentials",
+    "certificateUrl": "https://www.credly.com/badges/3e54c0e1-6f5f-45cb-84d4-9e90aedec34c/public_url"
   }
 ]

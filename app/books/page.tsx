@@ -159,7 +159,7 @@ export default function BooksPage() {
                         isHoverable
                         className="flex flex-col transition hover:scale-[1.04] hover:shadow-xl rounded-2xl border border-neutral-800 bg-neutral-900"
                     >
-                        <CardBody className="p-0">
+                        <CardBody className="p-0 flex flex-col">
                             <div className="w-full h-[240px] md:h-[320px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden">
                                 <Image
                                     alt={book.title}
@@ -170,9 +170,11 @@ export default function BooksPage() {
                                     style={{ maxHeight: 320, maxWidth: "100%" }}
                                 />
                             </div>
+                            <h3 className="font-bold mt-4 mb-1 text-white leading-snug text-base px-4 text-center">
+                                {book.title}
+                            </h3>
                         </CardBody>
                         <CardFooter className="flex flex-col items-start pt-3 pb-4 px-4 w-full">
-                            <h3 className="font-bold mb-1 text-white leading-snug self-start text-base">{book.title}</h3>
                             <div className="text-xs text-neutral-400 mb-1">{book.author}</div>
                             <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 items-center">
                                 {book.area.map((a, idx) => (
