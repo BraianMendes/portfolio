@@ -31,5 +31,42 @@
     "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
     "slug": "ai-medical-prescription-reader",
     "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader"
+  },
+  {
+    "id": "braian-portfolio",
+    "title": "Braian Mendes Portfolio",
+    "description": "Personal portfolio built with Next.js, React, and Tailwind CSS. Showcases my projects, certifications, recommended books, and blog posts. Features advanced filtering, responsive and accessible UI, and a modern developer experience.",
+    "overview": "A modern, performant, and accessible portfolio to present my work, learning journey, and thoughts on software engineering. Includes sections for projects, certifications, books, blog, and about.",
+    "howItWorks": [
+      "Visitors can browse and filter projects, certifications, and books.",
+      "Each section provides detailed information and links.",
+      "Blog and documentation sections for sharing knowledge and guides.",
+      "Responsive and theme-aware UI for all devices."
+    ],
+    "tools": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "HeroUI",
+      "next-themes",
+      "Framer Motion"
+    ],
+    "limitations": [
+      "Blog and documentation sections are under construction.",
+      "Continuously evolving with new features and content."
+    ],
+    "projectStructure": [
+      "app/ — Next.js app directory (pages, layouts, API routes)",
+      "components/ — Reusable UI components",
+      "config/ — Site and theme configuration",
+      "public/ — Static assets (images, favicons, etc.)",
+      "styles/ — Global and Tailwind CSS",
+      "types/ — TypeScript type definitions"
+    ],
+    "image": "/images/projects/portfolio-cover.png",
+    "tags": ["Portfolio", "Next.js", "React", "Tailwind CSS", "TypeScript", "HeroUI"],
+    "slug": "braian-portfolio",
+    "githubUrl": "https://github.com/BraianMendes/braian-portfolio"
   }
 ]

@@ -1,0 +1,59 @@
+{
+  "id": "braian-portfolio",
+  "title": "Braian Mendes Portfolio",
+  "subtitle": "Modern, accessible, and filterable portfolio built with Next.js, React, and Tailwind CSS",
+  "tags": ["Portfolio", "Next.js", "React", "Tailwind CSS", "TypeScript", "HeroUI"],
+  "coverImage": "/images/projects/portfolio-cover.png",
+  "githubUrl": "https://github.com/BraianMendes/braian-portfolio",
+  "demoUrl": "",
+  "description": "Personal portfolio built with Next.js, React, and Tailwind CSS. Showcases my projects, certifications, recommended books, and blog posts. Features advanced filtering, responsive and accessible UI, and a modern developer experience.",
+  "overview": "A modern, performant, and accessible portfolio to present my work, learning journey, and thoughts on software engineering. Includes sections for projects, certifications, books, blog, and about.",
+  "howItWorks": [
+    "Visitors can browse and filter projects, certifications, and books.",
+    "Each section provides detailed information and links.",
+    "Blog and documentation sections for sharing knowledge and guides.",
+    "Responsive and theme-aware UI for all devices."
+  ],
+  "features": [
+    "Dark/Light Mode: Toggle between themes for comfortable viewing.",
+    "Responsive Design: Fully optimized for desktop and mobile.",
+    "Accessible UI: Built with accessibility best practices.",
+    "Interactive Filtering: Easily find projects, books, or certificates by tags, tools, area, year, or institution.",
+    "Modern Animations: Smooth transitions and UI feedback."
+  ],
+  "mainSections": [
+    "Projects: Curated list of software projects with filtering and search.",
+    "Certifications: Professional certifications, filterable by area, year, and institution.",
+    "Books: Recommended books with filters and personal notes.",
+    "Blog: Articles and studies on technology and career (coming soon).",
+    "About: Information about my background and passion for software engineering."
+  ],
+  "installation": [
+    "git clone https://github.com/BraianMendes/braian-portfolio.git",
+    "cd braian-portfolio",
+    "npm install # or yarn install",
+    "npm run dev # or yarn dev"
+  ],
+  "projectStructure": [
+    "app/ — Next.js app directory (pages, layouts, API routes)",
+    "components/ — Reusable UI components",
+    "config/ — Site and theme configuration",
+    "public/ — Static assets (images, favicons, etc.)",
+    "styles/ — Global and Tailwind CSS",
+    "types/ — TypeScript type definitions"
+  ],
+  "techStack": [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "HeroUI",
+    "next-themes",
+    "Framer Motion"
+  ],
+  "codeSnippet": "import { ThemeProvider } from 'next-themes';\n\nexport default function App({ Component, pageProps }) {\n  return (\n    <ThemeProvider attribute=\"class\">\n      <Component {...pageProps} />\n    </ThemeProvider>\n  );\n}",
+  "limitations": [
+    "Blog and documentation sections are under construction.",
+    "Continuously evolving with new features and content."
+  ]
+}
