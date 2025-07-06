@@ -1,5 +1,51 @@
 [
   {
+    "id": "ai-client-reports",
+    "title": "AI Client Reports",
+    "description": "A WhatsApp bot that generates business reports using AI, with a web interface to visualize and manage reports. Enhanced with RAG (Retrieval-Augmented Generation) for knowledge-based responses using uploaded documents. Features both WhatsApp integration and a complete web dashboard.",
+    "overview": "Ask for company analysis via WhatsApp or web interface. The bot uses AI (Groq/LLaMA) enhanced with a RAG system to generate business reports and insights based on your uploaded documents. Everything can be downloaded as PDF.",
+    "howItWorks": [
+      "WhatsApp Bot: Send 'analyze Tesla' and get a complete report enhanced with your knowledge base.",
+      "Web Interface: More complete version with history, templates, and RAG document management.",
+      "RAG System: Upload documents (PDF, DOCX, TXT, MD, HTML, JSON) to build your own knowledge base.",
+      "Vector Search: Semantic search through your documents for enhanced AI responses.",
+      "PDF Export: Generate and download organized reports as PDF files."
+    ],
+    "tools": [
+      "Node.js",
+      "Express.js",
+      "@whiskeysockets/baileys",
+      "Groq API (LLaMA 3 70B)",
+      "Next.js",
+      "React 19",
+      "TypeScript",
+      "TailwindCSS",
+      "HeroUI",
+      "PDFKit",
+      "jsPDF",
+      "Custom RAG System"
+    ],
+    "limitations": [
+      "Sessions are lost when server restarts (no database yet).",
+      "Only works with one WhatsApp number at a time.",
+      "RAG system is in-memory only (vectors lost on restart).",
+      "Performance drops with many simultaneous users.",
+      "Requires stable internet connection for AI and WhatsApp Web."
+    ],
+    "projectStructure": [
+      "ai-whatsapp-reports-backend/ — Express API + WhatsApp Bot integration",
+      "ai-whatsapp-reports-frontend/ — Next.js web interface with RAG management",
+      "utils/ragService.js — RAG system logic and vector operations",
+      "utils/documentProcessor.js — Document parsing and text extraction",
+      "src/app/rag/ — RAG management and document upload interface",
+      "scripts/ — Development utilities and automation tools"
+    ],
+    "image": "/images/projects/ai-client-reports.png",
+    "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Groq", "LLaMA", "Next.js", "Express.js", "Vector Search", "Document Processing"],
+    "slug": "ai-client-reports",
+    "githubUrl": "https://github.com/BraianMendes/ai-client-reports"
+  },
+  {
     "id": "ai-medical-prescription-reader",
     "title": "Intelligent Medical Prescription Reader",
     "description": "Proof of Concept (POC) web app built with Next.js, demonstrating OCR and NLP to read, interpret, and standardize information from medical prescriptions in image format. Automates reading and understanding prescriptions using AI, making the process faster, safer, and less prone to human error. Uses Tesseract.js for OCR and compromise for NLP to extract and normalize drug names, dosages, and quantities, even with writing variations or OCR errors. Not intended for production or real medical use.",

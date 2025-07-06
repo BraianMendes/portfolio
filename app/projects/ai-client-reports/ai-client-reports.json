@@ -1,0 +1,67 @@
+{
+  "id": "ai-client-reports",
+  "title": "AI Client Reports",
+  "subtitle": "WhatsApp bot with RAG-enhanced AI for generating business reports",
+  "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Groq", "LLaMA", "Next.js", "Express.js", "Vector Search", "Document Processing"],
+  "coverImage": "/images/projects/ai-client-reports.png",
+  "githubUrl": "https://github.com/BraianMendes/ai-client-reports",
+  "demoUrl": "",
+  "description": "A WhatsApp bot that generates business reports using AI, with a web interface to visualize and manage reports. Enhanced with RAG (Retrieval-Augmented Generation) for knowledge-based responses using uploaded documents. Features both WhatsApp integration and a complete web dashboard.",
+  "overview": "Combines the convenience of WhatsApp with the power of AI to generate comprehensive business reports. The system uses Groq's LLaMA 3 70B model enhanced with a custom RAG system that allows users to upload their own documents, creating a personalized knowledge base for more accurate and contextual analysis.",
+  "howItWorks": [
+    "WhatsApp Integration: Send 'analyze Tesla' and get a complete report enhanced with your knowledge base.",
+    "Web Interface: Complete dashboard with history, templates, and RAG document management.",
+    "RAG System: Upload documents (PDF, DOCX, TXT, MD, HTML, JSON) to build your own knowledge base.",
+    "Vector Search: Semantic search through your documents for enhanced AI responses.",
+    "PDF Export: Generate and download organized reports as PDF files.",
+    "Context Management: Maintains conversation context across multiple messages."
+  ],
+  "ragHighlights": "The project's main innovation is the RAG system that processes and indexes uploaded documents, creating vector embeddings for semantic search. This allows the AI to provide responses enriched with specific information from your own knowledge base, making analysis more accurate and personalized.",
+  "architecture": [
+    "Frontend: Next.js 14 with React 19, TypeScript, TailwindCSS, and HeroUI for modern UI.",
+    "Backend: Express.js server with WhatsApp Web integration via Baileys library.",
+    "AI Layer: Groq API with LLaMA 3 70B model for intelligent text generation.",
+    "RAG System: Custom implementation with document processing and vector embeddings.",
+    "Export: PDFKit for server-side and jsPDF for client-side PDF generation."
+  ],
+  "installation": [
+    "git clone https://github.com/BraianMendes/ai-client-reports",
+    "cd ai-client-reports",
+    "npm run install:all",
+    "cd ai-whatsapp-reports-backend && cp .env.example .env",
+    "cd ../ai-whatsapp-reports-frontend && cp .env.local.example .env.local",
+    "Configure your GROQ_API_KEY in backend .env file",
+    "npm run dev # Starts both frontend and backend"
+  ],
+  "projectStructure": [
+    "ai-whatsapp-reports-backend/ — Express API with WhatsApp Bot integration and RAG system.",
+    "ai-whatsapp-reports-frontend/ — Next.js web interface with document management.",
+    "utils/ragService.js — RAG system logic and vector operations.",
+    "utils/documentProcessor.js — Document parsing and text extraction.",
+    "src/app/rag/ — RAG management and document upload interface.",
+    "scripts/ — Development utilities and automation tools."
+  ],
+  "features": [
+    "Dual Interface: Both WhatsApp bot and web dashboard for different use cases.",
+    "RAG Enhancement: Upload documents to create a personalized knowledge base.",
+    "Smart Context: AI maintains conversation context and uses uploaded documents.",
+    "PDF Export: Professional reports generated on both client and server side.",
+    "Rate Limiting: Built-in protection to prevent API abuse.",
+    "Multi-language: Support for Portuguese and English.",
+    "Responsive Design: Works perfectly on desktop and mobile devices."
+  ],
+  "limitations": [
+    "In-memory storage: Sessions and RAG vectors are lost on server restart.",
+    "Single WhatsApp: Only works with one WhatsApp number at a time.",
+    "Performance: May slow down with many simultaneous users.",
+    "Internet dependent: Requires stable connection for AI and WhatsApp Web.",
+    "File size limits: Maximum 10MB per uploaded document."
+  ],
+  "technicalHighlights": [
+    "Custom RAG implementation with vector embeddings for semantic search.",
+    "Real-time WhatsApp integration using Baileys library.",
+    "Dual PDF generation system for different environments.",
+    "Smart document processing supporting multiple file formats.",
+    "Context-aware AI responses enriched with user's knowledge base."
+  ]
+}
