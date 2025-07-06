@@ -41,7 +41,10 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <div className="fixed inset-0 z-0 bg-hexagon-pattern pointer-events-none" aria-hidden="true" />
+        <div
+          aria-hidden="true"
+          className="fixed inset-0 z-0 bg-hexagon-pattern pointer-events-none"
+        />
 
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative z-10 flex flex-col h-screen">

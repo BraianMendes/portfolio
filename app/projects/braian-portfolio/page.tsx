@@ -1,13 +1,7 @@
 "use client";
-import {
-  Card,
-  CardBody,
-  Chip,
-  Image,
-  Button,
-  Tooltip,
-} from "@heroui/react";
+import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
 import { Github } from "lucide-react";
+
 import data from "./braian-portfolio.json";
 
 export default function BraianPortfolioPage() {
@@ -22,15 +16,15 @@ export default function BraianPortfolioPage() {
           </h1>
           <Tooltip content="GitHub" placement="top">
             <Button
+              aria-label="View source code on GitHub"
               as="a"
-              href={project.githubUrl}
-              variant="light"
-              color="secondary"
               className="p-1 rounded-full"
+              color="secondary"
+              href={project.githubUrl}
+              rel="noopener noreferrer"
               style={{ minWidth: 0, height: "40px" }}
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View source code on GitHub"
+              variant="light"
             >
               <Github size={28} />
             </Button>
@@ -43,8 +37,8 @@ export default function BraianPortfolioPage() {
           {project.tags.map((tag: string) => (
             <Chip
               key={tag}
-              variant="flat"
               className="uppercase font-semibold tracking-wide"
+              variant="flat"
             >
               {tag}
             </Chip>
@@ -52,13 +46,17 @@ export default function BraianPortfolioPage() {
         </div>
       </div>
 
-      <Card isHoverable shadow="lg" className="mb-8 rounded-2xl overflow-hidden">
+      <Card
+        isHoverable
+        className="mb-8 rounded-2xl overflow-hidden"
+        shadow="lg"
+      >
         <Image
           alt={project.title}
+          className="object-cover w-full h-[280px] md:h-[350px]"
           height={350}
           src={project.coverImage}
           width={900}
-          className="object-cover w-full h-[280px] md:h-[350px]"
         />
       </Card>
 
@@ -100,7 +98,7 @@ export default function BraianPortfolioPage() {
           <h3 className="font-semibold text-base mb-2">Tech Stack</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack.map((tech: string) => (
-              <Chip key={tech} variant="flat" className="font-semibold">
+              <Chip key={tech} className="font-semibold" variant="flat">
                 {tech}
               </Chip>
             ))}
@@ -114,13 +112,13 @@ export default function BraianPortfolioPage() {
           <div className="flex justify-end">
             <Button
               as="a"
-              href={project.githubUrl}
-              startContent={<Github size={20} />}
-              variant="solid"
-              color="secondary"
               className="shadow-md"
-              target="_blank"
+              color="secondary"
+              href={project.githubUrl}
               rel="noopener noreferrer"
+              startContent={<Github size={20} />}
+              target="_blank"
+              variant="solid"
             >
               GitHub
             </Button>

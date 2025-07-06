@@ -18,16 +18,12 @@ import clsx from "clsx";
 import projectsDataRaw from "./projects.json";
 
 import { title } from "@/components/primitives";
-import {
+import { 
   GithubIcon,
   PythonIcon,
   AIIcon,
   DataIcon,
   IoTIcon,
-  JavaScriptIcon,
-  ReactIcon,
-  CSSIcon,
-  NextJSIcon,
 } from "@/components/icons";
 
 type ProjectType = {
@@ -154,29 +150,15 @@ export default function ProjectsPage() {
   const techFilters = [
     {
       name: "JavaScript",
-      icon: JavaScriptIcon,
-      tags: ["JavaScript", "JS", "TypeScript"],
-    },
-    {
-      name: "React",
-      icon: ReactIcon,
-      tags: ["React", "Next.js"],
-    },
-    {
-      name: "Next.js",
-      icon: NextJSIcon,
-      tags: ["Next.js"],
+      icon: DataIcon,
+      tags: ["JavaScript", "JS", "TypeScript", "Next.js", "React", "Node.js"],
     },
     {
       name: "Python",
       icon: PythonIcon,
       tags: ["Python", "Tesseract.js", "OCR"],
     },
-    {
-      name: "CSS",
-      icon: CSSIcon,
-      tags: ["CSS", "Tailwind CSS", "Styling"],
-    },
+    { name: "CSS", icon: IoTIcon, tags: ["CSS", "Tailwind CSS", "Styling"] },
     {
       name: "AI/ML",
       icon: AIIcon,

@@ -11,20 +11,21 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
 import clsx from "clsx";
+
 import { siteConfig } from "@/config/site";
 import { GithubIcon } from "@/components/icons";
 
-const navItems = [
-  ...siteConfig.navItems,
-];
+const navItems = [...siteConfig.navItems];
 
 export const Navbar = () => {
   return (
-    <HeroUINavbar maxWidth="xl" position="sticky" className="h-12 py-0">
+    <HeroUINavbar className="h-12 py-0" maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-2 max-w-fit">
           <NextLink className="flex items-center gap-1" href="/">
-            <span className="font-semibold text-sm tracking-tight text-inherit">Braian&apos;s Portfolio</span>
+            <span className="font-semibold text-sm tracking-tight text-inherit">
+              Braian&apos;s Portfolio
+            </span>
           </NextLink>
         </NavbarBrand>
         <ul className="hidden lg:flex gap-2 justify-start ml-2">
@@ -33,7 +34,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   "text-sm font-normal",
-                  "data-[active=true]:text-primary data-[active=true]:font-semibold"
+                  "data-[active=true]:text-primary data-[active=true]:font-semibold",
                 )}
                 color="foreground"
                 href={item.href}
@@ -45,7 +46,10 @@ export const Navbar = () => {
         </ul>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      >
         <NavbarItem className="hidden sm:flex gap-2">
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
             <GithubIcon className="text-default-500 w-5 h-5" />
@@ -76,10 +80,10 @@ export const Navbar = () => {
           {navItems.map((item, index) => (
             <NavbarMenuItem key={`${item.href}-${index}`}>
               <Link
+                className="font-normal"
                 color="foreground"
                 href={item.href}
                 size="sm"
-                className="font-normal"
               >
                 {item.label}
               </Link>
