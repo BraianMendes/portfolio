@@ -1,15 +1,7 @@
 "use client";
 
 import { useState, useMemo, Fragment } from "react";
-import {
-  Card,
-  CardBody,
-  CardFooter,
-  Image,
-  Input,
-  Button,
-  Tooltip,
-} from "@heroui/react";
+import { Image, Input, Button } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
 import {
   ChevronDown,
@@ -26,7 +18,13 @@ import clsx from "clsx";
 import projectsDataRaw from "./projects.json";
 
 import { title } from "@/components/primitives";
-import { ReactIcon, CSSIcon, JavaScriptIcon, PythonIcon } from "@/components/icons";
+import {
+  ReactIcon,
+  CSSIcon,
+  JavaScriptIcon,
+  PythonIcon,
+} from "@/components/icons";
+import { SmartTags } from "@/components/smart-tags";
 
 type ProjectType = {
   id: string;
@@ -316,67 +314,77 @@ export default function ProjectsPage() {
           </div>
         )}
         {filtered.map((project) => (
-          <Card
-            key={project.id}
-            isHoverable
-            isPressable
-            className="flex flex-col cursor-pointer min-h-[340px] bg-neutral-900 border border-neutral-800 shadow-lg transition duration-150 ease-out hover:shadow-xl focus:shadow-xl active:shadow-lg"
-            onClick={() => router.push(`/projects/${project.slug}`)}
-          >
-            <CardBody className="p-0 flex flex-col">
+          <div key={project.id} className="relative group">
+            <div
+              className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden min-h-[400px] flex flex-col cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-primary-500/20 hover:border-primary-500/30 group-hover:scale-105 group-hover:z-50 group-hover:relative"
+              role="button"
+              tabIndex={0}
+              onClick={() => router.push(`/projects/${project.slug}`)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  router.push(`/projects/${project.slug}`);
+                }
+              }}
+            >
+              {/* Seção da imagem */}
               <div
-                className="w-full h-[140px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden group relative"
-                style={{ minHeight: 140, maxHeight: 180, cursor: "pointer" }}
+                className="w-full h-[140px] bg-neutral-800 flex items-center justify-center overflow-hidden relative"
+                style={{ minHeight: 140, maxHeight: 180 }}
               >
                 <Image
                   alt={project.title}
-                  className="object-cover py-1 w-full h-full transition-transform group-hover:scale-105"
+                  className="object-cover w-full h-full transition-all duration-300 group-hover:scale-110"
                   height={140}
                   src={project.image}
                   style={{ maxHeight: 180, maxWidth: "100%" }}
                   width={240}
                 />
                 {project.githubUrl && (
-                  <Tooltip content="View on GitHub">
-                    <Button
-                      aria-label="GitHub"
-                      as="a"
-                      className="absolute top-3 right-3 z-10 p-1 rounded-full bg-white/80 backdrop-blur hover:bg-white"
-                      href={project.githubUrl}
-                      target="_blank"
-                      variant="light"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Github size={20} />
-                    </Button>
-                  </Tooltip>
+                  <Button
+                    aria-label="GitHub"
+                    as="a"
+                    className="absolute top-3 right-3 z-10 p-1 rounded-full bg-white/80 backdrop-blur hover:bg-white"
+                    href={project.githubUrl}
+                    target="_blank"
+                    variant="light"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Github size={20} />
+                  </Button>
                 )}
               </div>
-              <h3 className="font-bold mt-4 mb-1 text-white leading-snug text-base px-4 text-center">
-                {project.title}
-              </h3>
-            </CardBody>
-            <CardFooter className="flex flex-col items-start pt-0 pb-4 px-4 w-full">
-              <div className="text-xs text-neutral-400 mb-1">
-                {project.tools.join(", ")}
+
+              {/* Conteúdo do card */}
+              <div className="p-6 flex flex-col flex-grow">
+                {/* Header do card */}
+                <div className="">
+                  <h3 className="font-bold text-white text-lg mb-2 transition-colors duration-300 group-hover:text-primary-300">
+                    {project.title}
+                  </h3>
+
+                  {/* Overview - truncada normalmente, completa no hover */}
+                  <div className="relative overflow-hidden mb-3">
+                    <p className="text-neutral-300 text-sm leading-relaxed transition-all duration-300 group-hover:line-clamp-none line-clamp-3">
+                      {project.overview}
+                    </p>
+                    {/* Gradiente para indicar texto truncado - só aparece quando não há hover */}
+                    <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-neutral-900 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
+                  </div>
+                </div>
+
+                {/* Tags inteligentes */}
+                <div className="mt-auto">
+                  <SmartTags
+                    className="w-full"
+                    maxVisibleTags={3}
+                    tags={project.tags}
+                    tools={project.tools}
+                  />
+                </div>
               </div>
-              <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2 items-center">
-                {project.tags.map((t, idx) => (
-                  <span
-                    key={t}
-                    className={
-                      idx === 0
-                        ? "text-sm font-semibold text-primary-300"
-                        : "text-sm text-primary-300"
-                    }
-                    title={t}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </CardFooter>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
     </div>

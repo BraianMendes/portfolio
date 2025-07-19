@@ -2,7 +2,7 @@
   "id": "ai-medical-prescription-reader",
   "title": "Intelligent Medical Prescription Reader",
   "subtitle": "POC for intelligent reading of medical prescriptions with OCR and NLP",
-  "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
+  "tags": ["AI", "Healthcare", "OCR", "NLP"],
   "coverImage": "/images/projects/ai-medical-prescription-reader.png",
   "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader",
   "demoUrl": "",

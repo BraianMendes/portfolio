@@ -12,18 +12,14 @@
       "PDF Export: Generate and download organized reports as PDF files."
     ],
     "tools": [
+      "TypeScript",
       "Node.js",
       "Express.js",
-      "@whiskeysockets/baileys",
-      "Groq API (LLaMA 3 70B)",
+      "React",
       "Next.js",
-      "React 19",
-      "TypeScript",
-      "TailwindCSS",
-      "HeroUI",
-      "PDFKit",
-      "jsPDF",
-      "Custom RAG System"
+      "Groq API",
+      "LLaMA 3",
+      "HeroUI"
     ],
     "limitations": [
       "Sessions are lost when server restarts (no database yet).",
@@ -33,13 +29,13 @@
       "Requires stable internet connection for AI and WhatsApp Web."
     ],
     "image": "/images/projects/ai-client-reports.png",
-    "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Groq", "LLaMA", "Next.js", "Express.js", "Vector Search", "Document Processing"],
+    "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Vector Search", "Document Processing"],
     "slug": "ai-client-reports",
     "githubUrl": "https://github.com/BraianMendes/ai-client-reports"
   },
   {
     "id": "ai-medical-prescription-reader",
-    "title": "Intelligent Medical Prescription Reader",
+    "title": "AI Medicine Reader",
     "description": "Proof of Concept (POC) web app built with Next.js, demonstrating OCR and NLP to read, interpret, and standardize information from medical prescriptions in image format. Automates reading and understanding prescriptions using AI, making the process faster, safer, and less prone to human error. Uses Tesseract.js for OCR and compromise for NLP to extract and normalize drug names, dosages, and quantities, even with writing variations or OCR errors. Not intended for production or real medical use.",
     "overview": "Uploads a prescription image, extracts text with Tesseract.js, processes and normalizes with compromise NLP, and returns structured drug info. Uses a local, simplified database for simulation.",
     "howItWorks": [
@@ -50,9 +46,13 @@
       "Uses a local, limited database for demonstration only."
     ],
     "tools": [
-      "Tesseract.js (OCR)",
-      "Compromise (NLP)",
-      "Next.js"
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tesseract.js",
+      "Compromise",
+      "Tailwind CSS",
+      "HeroUI"
     ],
     "limitations": [
       "POC for technical demonstration only.",
@@ -60,7 +60,7 @@
       "Not for real or production use."
     ],
     "image": "/images/projects/ai-medical-prescription-reader.png",
-    "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
+    "tags": ["AI", "Healthcare", "OCR", "NLP"],
     "slug": "ai-medical-prescription-reader",
     "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader"
   },
@@ -89,7 +89,7 @@
       "Continuously evolving with new features and content."
     ],
     "image": "/images/projects/portfolio-cover.png",
-    "tags": ["Portfolio", "Next.js", "React", "Tailwind CSS", "TypeScript", "HeroUI"],
+    "tags": ["Portfolio", "Web Development", "Frontend"],
     "slug": "braian-portfolio",
     "githubUrl": "https://github.com/BraianMendes/braian-portfolio"
   }
