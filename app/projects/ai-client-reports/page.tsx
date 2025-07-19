@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardBody,
-  Chip,
-  Image,
-  Button,
-  Tooltip,
-  Divider,
-} from "@heroui/react";
+import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
 import { Github, Bot, Database, FileText, Zap } from "lucide-react";
 
 import data from "./ai-client-reports.json";
@@ -25,7 +17,7 @@ export default function AIClientReportsPage() {
           </h1>
           <Tooltip content="GitHub" placement="top">
             <Button
-              aria-label="Ver código fonte no GitHub"
+              aria-label="View source code on GitHub"
               as="a"
               className="p-1 rounded-full"
               color="secondary"
@@ -75,11 +67,11 @@ export default function AIClientReportsPage() {
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
               <Bot className="text-secondary" size={24} />
-              Visão Geral
+              Overview
             </h3>
             <p className="mb-6 text-lg leading-relaxed">{project.overview}</p>
 
-            <h4 className="font-semibold text-lg mb-3">Como Funciona</h4>
+            <h4 className="font-semibold text-lg mb-3">How It Works</h4>
             <ul className="list-disc pl-6 space-y-2 text-base mb-6">
               {project.howItWorks.map((item, index) => (
                 <li key={index}>{item}</li>
@@ -97,7 +89,7 @@ export default function AIClientReportsPage() {
                 target="_blank"
                 variant="solid"
               >
-                Ver no GitHub
+                View on GitHub
               </Button>
             </div>
           </CardBody>
@@ -108,13 +100,13 @@ export default function AIClientReportsPage() {
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
               <Database className="text-warning" size={24} />
-              Sistema RAG (Retrieval-Augmented Generation)
+              RAG System (Retrieval-Augmented Generation)
             </h3>
             <p className="mb-6 text-base leading-relaxed">
               {project.ragHighlights}
             </p>
 
-            <h4 className="font-semibold text-lg mb-3">Recursos Principais</h4>
+            <h4 className="font-semibold text-lg mb-3">Main Features</h4>
             <ul className="list-disc pl-6 space-y-2 text-base">
               {project.features.map((feature, index) => (
                 <li key={index}>{feature}</li>
@@ -128,19 +120,10 @@ export default function AIClientReportsPage() {
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
               <Zap className="text-success" size={24} />
-              Arquitetura Técnica
+              Technical Architecture
             </h3>
             <ul className="list-disc pl-6 space-y-2 text-base mb-6">
               {project.architecture.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-
-            <Divider className="my-4" />
-
-            <h4 className="font-semibold text-lg mb-3">Estrutura do Projeto</h4>
-            <ul className="list-disc pl-6 space-y-1 text-base">
-              {project.projectStructure.map((item, index) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
@@ -152,7 +135,7 @@ export default function AIClientReportsPage() {
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
               <FileText className="text-primary" size={24} />
-              Destaques Técnicos
+              Technical Highlights
             </h3>
             <ul className="list-disc pl-6 space-y-2 text-base mb-6">
               {project.technicalHighlights.map((highlight, index) => (
@@ -160,18 +143,7 @@ export default function AIClientReportsPage() {
               ))}
             </ul>
 
-            <h4 className="font-semibold text-lg mb-3">Instalação</h4>
-            <div className="bg-gray-900 rounded-lg p-4 mb-6">
-              <code className="text-sm text-gray-300">
-                {project.installation.map((step, index) => (
-                  <div key={index} className="mb-1">
-                    {step}
-                  </div>
-                ))}
-              </code>
-            </div>
-
-            <h4 className="font-semibold text-lg mb-3">Limitações Atuais</h4>
+            <h4 className="font-semibold text-lg mb-3">Current Limitations</h4>
             <ul className="list-disc pl-6 space-y-1 text-base text-gray-600 dark:text-gray-400">
               {project.limitations.map((limitation, index) => (
                 <li key={index}>{limitation}</li>

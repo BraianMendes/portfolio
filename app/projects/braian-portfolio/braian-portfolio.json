@@ -28,20 +28,6 @@
     "Blog: Articles and studies on technology and career (coming soon).",
     "About: Information about my background and passion for software engineering."
   ],
-  "installation": [
-    "git clone https://github.com/BraianMendes/braian-portfolio.git",
-    "cd braian-portfolio",
-    "npm install # or yarn install",
-    "npm run dev # or yarn dev"
-  ],
-  "projectStructure": [
-    "app/ — Next.js app directory (pages, layouts, API routes)",
-    "components/ — Reusable UI components",
-    "config/ — Site and theme configuration",
-    "public/ — Static assets (images, favicons, etc.)",
-    "styles/ — Global and Tailwind CSS",
-    "types/ — TypeScript type definitions"
-  ],
   "techStack": [
     "Next.js",
     "React",

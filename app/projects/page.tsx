@@ -11,24 +11,22 @@ import {
   Tooltip,
 } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDown,
+  Check,
+  Github,
+  Brain,
+  BarChart3,
+  Cpu,
+  Triangle,
+} from "lucide-react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import projectsDataRaw from "./projects.json";
 
 import { title } from "@/components/primitives";
-import {
-  GithubIcon,
-  PythonIcon,
-  AIIcon,
-  DataIcon,
-  IoTIcon,
-  JavaScriptIcon,
-  ReactIcon,
-  CSSIcon,
-  NextJSIcon,
-} from "@/components/icons";
+import { ReactIcon, CSSIcon, JavaScriptIcon, PythonIcon } from "@/components/icons";
 
 type ProjectType = {
   id: string;
@@ -38,7 +36,6 @@ type ProjectType = {
   howItWorks: string[];
   tools: string[];
   limitations: string[];
-  projectStructure: string[];
   image: string;
   tags: string[];
   slug: string;
@@ -95,7 +92,7 @@ function MultiSelectPopover({
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl shadow transition text-base font-medium border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 outline-none ${open ? "ring-2 ring-primary-500" : ""} ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
           >
             {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDownIcon
+            <ChevronDown
               className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
             />
           </Popover.Button>
@@ -129,7 +126,7 @@ function MultiSelectPopover({
                   />
                   {item}
                   {selected.includes(item) && (
-                    <CheckIcon className="w-4 h-4 text-primary-400 ml-auto" />
+                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
                   )}
                 </label>
               ))}
@@ -164,7 +161,7 @@ export default function ProjectsPage() {
     },
     {
       name: "Next.js",
-      icon: NextJSIcon,
+      icon: Triangle,
       tags: ["Next.js"],
     },
     {
@@ -179,7 +176,7 @@ export default function ProjectsPage() {
     },
     {
       name: "AI/ML",
-      icon: AIIcon,
+      icon: Brain,
       tags: [
         "AI",
         "Machine Learning",
@@ -191,7 +188,7 @@ export default function ProjectsPage() {
     },
     {
       name: "Frontend",
-      icon: DataIcon,
+      icon: BarChart3,
       tags: [
         "React",
         "Next.js",
@@ -203,7 +200,7 @@ export default function ProjectsPage() {
     },
     {
       name: "UI/UX",
-      icon: IoTIcon,
+      icon: Cpu,
       tags: [
         "HeroUI",
         "Tailwind CSS",
@@ -350,7 +347,7 @@ export default function ProjectsPage() {
                       variant="light"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <GithubIcon size={20} />
+                      <Github size={20} />
                     </Button>
                   </Tooltip>
                 )}

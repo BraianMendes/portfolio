@@ -3,18 +3,13 @@
 import { useState, useMemo, Fragment } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
 import { Popover, Transition, Dialog } from "@headlessui/react";
-import {
-  ChevronDownIcon,
-  XMarkIcon,
-  CheckIcon,
-} from "@heroicons/react/24/solid";
+import { ChevronDown, X, Check } from "lucide-react";
 import clsx from "clsx";
 
 import certificationsData from "./certifications.json";
 
 import { title } from "@/components/primitives";
 import {
-  PythonIcon,
   RIcon,
   SQLIcon,
   ExcelIcon,
@@ -24,6 +19,7 @@ import {
   AIIcon,
   DataIcon,
   IoTIcon,
+  PythonIcon,
 } from "@/components/icons";
 
 type CertType = (typeof certificationsData)[number];
@@ -88,7 +84,7 @@ function MultiSelectPopover({
             } ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
           >
             {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDownIcon
+            <ChevronDown
               className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
             />
           </Popover.Button>
@@ -130,7 +126,7 @@ function MultiSelectPopover({
                   />
                   {item}
                   {selected.includes(item) && (
-                    <CheckIcon className="w-4 h-4 text-primary-400 ml-auto" />
+                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
                   )}
                 </label>
               ))}
@@ -428,7 +424,7 @@ export default function CertificationsPage() {
                 className="absolute top-3 right-3 p-2 rounded-full bg-neutral-900/70 hover:bg-neutral-800 hover:text-white cursor-pointer transition z-50"
                 onClick={closeModal}
               >
-                <XMarkIcon className="w-6 h-6 text-white" />
+                <X className="w-6 h-6 text-white" />
               </button>
 
               {modalCert && modalMode === "card" && (

@@ -16,7 +16,7 @@ export default function MedicalPrescriptionReaderPage() {
           </h1>
           <Tooltip content="GitHub" placement="top">
             <Button
-              aria-label="Ver código fonte no GitHub"
+              aria-label="View source code on GitHub"
               as="a"
               className="p-1 rounded-full"
               color="secondary"
@@ -63,13 +63,13 @@ export default function MedicalPrescriptionReaderPage() {
       <Card className="rounded-2xl shadow-xl">
         <CardBody className="p-6">
           <p className="mb-5 text-lg leading-relaxed">{project.overview}</p>
-          <h3 className="font-semibold text-base mb-2 mt-4">Como funciona</h3>
+          <h3 className="font-semibold text-base mb-2 mt-4">How it works</h3>
           <ul className="list-disc pl-6 space-y-1 text-base mb-4">
             {project.howItWorks.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <h3 className="font-semibold text-base mb-2">Destaques de NLP</h3>
+          <h3 className="font-semibold text-base mb-2">NLP Highlights</h3>
           <p className="mb-6 text-base">{project.nlpHighlights}</p>
           <div className="flex justify-end">
             <Button

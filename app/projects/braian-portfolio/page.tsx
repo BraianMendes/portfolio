@@ -89,12 +89,6 @@ export default function BraianPortfolioPage() {
               </ul>
             </>
           )}
-          <h3 className="font-semibold text-base mb-2">Project Structure</h3>
-          <ul className="list-disc pl-6 space-y-1 text-base mb-4">
-            {project.projectStructure.map((item: string) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
           <h3 className="font-semibold text-base mb-2">Tech Stack</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {project.techStack.map((tech: string) => (

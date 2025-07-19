@@ -2,10 +2,10 @@
 
 import { button as buttonStyles } from "@heroui/theme";
 import { Link } from "@heroui/link";
+import { Github } from "lucide-react";
 
 import { title, subtitle } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
-import { GithubIcon } from "@/components/icons";
 
 export default function Home() {
   return (
@@ -39,7 +39,7 @@ export default function Home() {
           })}
           href={siteConfig.links.github}
         >
-          <GithubIcon className="mr-2" size={20} />
+          <Github className="mr-2" size={20} />
           GitHub
         </Link>
       </div>

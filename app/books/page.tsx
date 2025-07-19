@@ -3,20 +3,21 @@
 import { useState, useMemo, Fragment } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
-import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
+import {
+  ChevronDown,
+  Check,
+  BarChart3,
+  Code2,
+  Brain,
+  Settings,
+  Users,
+  Palette,
+} from "lucide-react";
 import clsx from "clsx";
 
 import booksDataRaw from "./books.json";
 
 import { title } from "@/components/primitives";
-import {
-  DataIcon,
-  JavaScriptIcon,
-  PsychologyIcon,
-  EngineeringIcon,
-  LeadershipIcon,
-  DesignIcon,
-} from "@/components/icons";
 
 type Book = {
   id: number;
@@ -79,7 +80,7 @@ function MultiSelectPopover<T extends string | number>({
             className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl shadow transition text-base font-medium border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 outline-none ${open ? "ring-2 ring-primary-500" : ""} ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
           >
             {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDownIcon
+            <ChevronDown
               className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
             />
           </Popover.Button>
@@ -113,7 +114,7 @@ function MultiSelectPopover<T extends string | number>({
                   />
                   {item}
                   {selected.includes(item) && (
-                    <CheckIcon className="w-4 h-4 text-primary-400 ml-auto" />
+                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
                   )}
                 </label>
               ))}
@@ -137,17 +138,17 @@ export default function BooksPage() {
   const categoryFilters = [
     {
       name: "Programming",
-      icon: JavaScriptIcon,
+      icon: Code2,
       areas: ["Programming", "Software Engineering", "Development"],
     },
     {
       name: "Design",
-      icon: DesignIcon,
+      icon: Palette,
       areas: ["Design", "UI/UX", "Visual Design", "User Experience"],
     },
     {
       name: "Psychology",
-      icon: PsychologyIcon,
+      icon: Brain,
       areas: [
         "Psychology",
         "Decision Making",
@@ -157,17 +158,17 @@ export default function BooksPage() {
     },
     {
       name: "Engineering",
-      icon: EngineeringIcon,
+      icon: Settings,
       areas: ["Software Engineering", "System Design", "Architecture"],
     },
     {
       name: "Data Science",
-      icon: DataIcon,
+      icon: BarChart3,
       areas: ["Data Science", "Analytics", "Statistics", "Machine Learning"],
     },
     {
       name: "Leadership",
-      icon: LeadershipIcon,
+      icon: Users,
       areas: ["Leadership", "Management", "Business", "Team Building"],
     },
   ];

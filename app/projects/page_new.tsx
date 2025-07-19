@@ -14,17 +14,12 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import { Github, Terminal } from "lucide-react";
 
 import projectsDataRaw from "./projects.json";
 
 import { title } from "@/components/primitives";
-import { 
-  GithubIcon,
-  PythonIcon,
-  AIIcon,
-  DataIcon,
-  IoTIcon,
-} from "@/components/icons";
+import { AIIcon, DataIcon, IoTIcon } from "@/components/icons";
 
 type ProjectType = {
   id: string;
@@ -34,7 +29,6 @@ type ProjectType = {
   howItWorks: string[];
   tools: string[];
   limitations: string[];
-  projectStructure: string[];
   image: string;
   tags: string[];
   slug: string;
@@ -155,7 +149,7 @@ export default function ProjectsPage() {
     },
     {
       name: "Python",
-      icon: PythonIcon,
+      icon: Terminal,
       tags: ["Python", "Tesseract.js", "OCR"],
     },
     { name: "CSS", icon: IoTIcon, tags: ["CSS", "Tailwind CSS", "Styling"] },
@@ -332,7 +326,7 @@ export default function ProjectsPage() {
                       variant="light"
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <GithubIcon size={20} />
+                      <Github size={20} />
                     </Button>
                   </Tooltip>
                 )}

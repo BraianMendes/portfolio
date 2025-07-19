@@ -24,23 +24,6 @@
     "RAG System: Custom implementation with document processing and vector embeddings.",
     "Export: PDFKit for server-side and jsPDF for client-side PDF generation."
   ],
-  "installation": [
-    "git clone https://github.com/BraianMendes/ai-client-reports",
-    "cd ai-client-reports",
-    "npm run install:all",
-    "cd ai-whatsapp-reports-backend && cp .env.example .env",
-    "cd ../ai-whatsapp-reports-frontend && cp .env.local.example .env.local",
-    "Configure your GROQ_API_KEY in backend .env file",
-    "npm run dev # Starts both frontend and backend"
-  ],
-  "projectStructure": [
-    "ai-whatsapp-reports-backend/ — Express API with WhatsApp Bot integration and RAG system.",
-    "ai-whatsapp-reports-frontend/ — Next.js web interface with document management.",
-    "utils/ragService.js — RAG system logic and vector operations.",
-    "utils/documentProcessor.js — Document parsing and text extraction.",
-    "src/app/rag/ — RAG management and document upload interface.",
-    "scripts/ — Development utilities and automation tools."
-  ],
   "features": [
     "Dual Interface: Both WhatsApp bot and web dashboard for different use cases.",
     "RAG Enhancement: Upload documents to create a personalized knowledge base.",

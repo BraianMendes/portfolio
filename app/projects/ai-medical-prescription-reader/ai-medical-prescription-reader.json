@@ -16,19 +16,6 @@
     "Uses a local and simplified database for simulation only."
   ],
   "nlpHighlights": "The project's differential is the use of NLP to interpret the extracted text, going beyond simple reading. Compromise allows the identification of patterns, drug names, and quantities, even with common OCR or handwriting errors.",
-  "installation": [
-    "git clone https://github.com/BraianMendes/AI_Medical_Prescription_Reader.git",
-    "cd AI_Medical_Prescription_Reader",
-    "npm install # or yarn install",
-    "npm run populate-db # or yarn populate-db (optional)",
-    "npm run dev # or yarn dev"
-  ],
-  "projectStructure": [
-    "src/app/page.tsx — Main page and upload interface.",
-    "src/utils/ocr.ts — OCR functions with Tesseract.js.",
-    "src/utils/parser.ts — NLP and normalization functions with Compromise.",
-    "scripts/populate-db.ts — Script to populate the sample database (optional)."
-  ],
   "techStack": [
     "Next.js",
     "React",

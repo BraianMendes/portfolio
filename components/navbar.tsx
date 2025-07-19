@@ -11,9 +11,9 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
 import clsx from "clsx";
+import { Github } from "lucide-react";
 
 import { siteConfig } from "@/config/site";
-import { GithubIcon } from "@/components/icons";
 
 const navItems = [...siteConfig.navItems];
 
@@ -52,7 +52,7 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-            <GithubIcon className="text-default-500 w-5 h-5" />
+            <Github className="text-default-500 w-5 h-5" />
           </Link>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
@@ -70,7 +70,7 @@ export const Navbar = () => {
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <Link isExternal aria-label="Github" href={siteConfig.links.github}>
-          <GithubIcon className="text-default-500 w-5 h-5" />
+          <Github className="text-default-500 w-5 h-5" />
         </Link>
         <NavbarMenuToggle />
       </NavbarContent>

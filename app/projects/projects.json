@@ -32,14 +32,6 @@
       "Performance drops with many simultaneous users.",
       "Requires stable internet connection for AI and WhatsApp Web."
     ],
-    "projectStructure": [
-      "ai-whatsapp-reports-backend/ — Express API + WhatsApp Bot integration",
-      "ai-whatsapp-reports-frontend/ — Next.js web interface with RAG management",
-      "utils/ragService.js — RAG system logic and vector operations",
-      "utils/documentProcessor.js — Document parsing and text extraction",
-      "src/app/rag/ — RAG management and document upload interface",
-      "scripts/ — Development utilities and automation tools"
-    ],
     "image": "/images/projects/ai-client-reports.png",
     "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Groq", "LLaMA", "Next.js", "Express.js", "Vector Search", "Document Processing"],
     "slug": "ai-client-reports",
@@ -66,12 +58,6 @@
       "POC for technical demonstration only.",
       "Local, limited database (not comprehensive).",
       "Not for real or production use."
-    ],
-    "projectStructure": [
-      "src/app/page.tsx — Main page and upload interface.",
-      "src/utils/ocr.ts — OCR functions with Tesseract.js.",
-      "src/utils/parser.ts — NLP functions with compromise.",
-      "scripts/populate-db.ts — Sample database script (optional)."
     ],
     "image": "/images/projects/ai-medical-prescription-reader.png",
     "tags": ["AI", "Healthcare", "OCR", "NLP", "Tesseract.js", "Compromise", "Next.js"],
@@ -101,14 +87,6 @@
     "limitations": [
       "Blog and documentation sections are under construction.",
       "Continuously evolving with new features and content."
-    ],
-    "projectStructure": [
-      "app/ — Next.js app directory (pages, layouts, API routes)",
-      "components/ — Reusable UI components",
-      "config/ — Site and theme configuration",
-      "public/ — Static assets (images, favicons, etc.)",
-      "styles/ — Global and Tailwind CSS",
-      "types/ — TypeScript type definitions"
     ],
     "image": "/images/projects/portfolio-cover.png",
     "tags": ["Portfolio", "Next.js", "React", "Tailwind CSS", "TypeScript", "HeroUI"],
