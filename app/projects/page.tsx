@@ -3,6 +3,11 @@
 import { useState, useMemo, Fragment } from "react";
 import { Image, Input, Button } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
+import { useRouter } from "next/navigation";
+import clsx from "clsx";
+
+import projectsDataRaw from "./projects.json";
+
 import {
   ChevronDown,
   Check,
@@ -11,19 +16,14 @@ import {
   BarChart3,
   Cpu,
   Triangle,
-} from "lucide-react";
-import { useRouter } from "next/navigation";
-import clsx from "clsx";
-
-import projectsDataRaw from "./projects.json";
-
+} from "@/components/icons/index";
 import { title } from "@/components/primitives";
 import {
   ReactIcon,
   CSSIcon,
   JavaScriptIcon,
   PythonIcon,
-} from "@/components/icons";
+} from "@/components/icons/index";
 import { SmartTags } from "@/components/smart-tags";
 
 type ProjectType = {
@@ -145,7 +145,6 @@ export default function ProjectsPage() {
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
   const [searchText, setSearchText] = useState("");
 
-  // Technology/Language filter definitions
   const techFilters = [
     {
       name: "JavaScript",
@@ -279,7 +278,6 @@ export default function ProjectsPage() {
         />
       </div>
 
-      {/* Technology/Language Filters */}
       <div className="flex flex-wrap gap-3 mt-6 items-center">
         <span className="text-sm font-medium text-neutral-300 mr-2">
           Technologies:
@@ -327,7 +325,6 @@ export default function ProjectsPage() {
                 }
               }}
             >
-              {/* Seção da imagem */}
               <div
                 className="w-full h-[140px] bg-neutral-800 flex items-center justify-center overflow-hidden relative"
                 style={{ minHeight: 140, maxHeight: 180 }}
@@ -355,25 +352,20 @@ export default function ProjectsPage() {
                 )}
               </div>
 
-              {/* Conteúdo do card */}
               <div className="p-6 flex flex-col flex-grow">
-                {/* Header do card */}
                 <div className="">
                   <h3 className="font-bold text-white text-lg mb-2 transition-colors duration-300 group-hover:text-primary-300">
                     {project.title}
                   </h3>
 
-                  {/* Overview - truncada normalmente, completa no hover */}
                   <div className="relative overflow-hidden mb-3">
                     <p className="text-neutral-300 text-sm leading-relaxed transition-all duration-300 group-hover:line-clamp-none line-clamp-3">
                       {project.overview}
                     </p>
-                    {/* Gradiente para indicar texto truncado - só aparece quando não há hover */}
                     <div className="absolute bottom-0 left-0 right-0 h-4 bg-gradient-to-t from-neutral-900 to-transparent opacity-100 group-hover:opacity-0 transition-opacity duration-300 pointer-events-none" />
                   </div>
                 </div>
 
-                {/* Tags inteligentes */}
                 <div className="mt-auto">
                   <SmartTags
                     className="w-full"

@@ -1,9 +1,10 @@
 "use client";
 
 import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
-import { Github, Bot, Database, FileText, Zap } from "lucide-react";
 
 import data from "./ai-client-reports.json";
+
+import { Github, Bot, Database, FileText, Zap } from "@/components/icons/index";
 
 export default function AIClientReportsPage() {
   const project = data;
@@ -61,8 +62,7 @@ export default function AIClientReportsPage() {
         />
       </Card>
 
-      <div className="grid gap-6">
-        {/* Overview */}
+  <div className="grid gap-6">
         <Card className="rounded-2xl shadow-xl">
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
@@ -95,7 +95,6 @@ export default function AIClientReportsPage() {
           </CardBody>
         </Card>
 
-        {/* RAG System Highlights */}
         <Card className="rounded-2xl shadow-xl">
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
@@ -115,7 +114,6 @@ export default function AIClientReportsPage() {
           </CardBody>
         </Card>
 
-        {/* Architecture */}
         <Card className="rounded-2xl shadow-xl">
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
@@ -130,7 +128,6 @@ export default function AIClientReportsPage() {
           </CardBody>
         </Card>
 
-        {/* Technical Highlights */}
         <Card className="rounded-2xl shadow-xl">
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">

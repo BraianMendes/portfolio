@@ -3,11 +3,11 @@
 import { useState, useMemo, Fragment } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
 import { Popover, Transition, Dialog } from "@headlessui/react";
-import { ChevronDown, X, Check } from "lucide-react";
 import clsx from "clsx";
 
 import certificationsData from "./certifications.json";
 
+import { ChevronDown, X, Check } from "@/components/icons/index";
 import { title } from "@/components/primitives";
 import {
   RIcon,
@@ -20,7 +20,7 @@ import {
   DataIcon,
   IoTIcon,
   PythonIcon,
-} from "@/components/icons";
+} from "@/components/icons/index";
 
 type CertType = (typeof certificationsData)[number];
 
@@ -152,7 +152,6 @@ export default function CertificationsPage() {
   const [modalCert, setModalCert] = useState<CertType | null>(null);
   const [modalMode, setModalMode] = useState<"card" | "image">("image");
 
-  // Technology/Language filter definitions
   const techFilters = [
     { name: "Python", icon: PythonIcon, tags: ["Python"] },
     { name: "R", icon: RIcon, tags: ["R", "RStudio"] },
@@ -283,7 +282,6 @@ export default function CertificationsPage() {
         />
       </div>
 
-      {/* Technology/Language Filters */}
       <div className="flex flex-wrap gap-3 mt-6 items-center">
         <span className="text-sm font-medium text-neutral-300 mr-2">
           Technologies:

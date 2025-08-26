@@ -11,8 +11,8 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { Github } from "lucide-react";
 
+import { Github } from "@/components/icons/index";
 import { siteConfig } from "@/config/site";
 
 const navItems = [...siteConfig.navItems];

@@ -1,8 +1,10 @@
 "use client";
+
 import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
-import { Github } from "lucide-react";
 
 import data from "./ai-medical-prescription-reader.json";
+
+import { Github } from "@/components/icons/index";
 
 export default function MedicalPrescriptionReaderPage() {
   const project = data;

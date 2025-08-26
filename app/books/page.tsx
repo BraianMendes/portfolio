@@ -3,6 +3,10 @@
 import { useState, useMemo, Fragment } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
 import { Popover, Transition } from "@headlessui/react";
+import clsx from "clsx";
+
+import booksDataRaw from "./books.json";
+
 import {
   ChevronDown,
   Check,
@@ -12,11 +16,7 @@ import {
   Settings,
   Users,
   Palette,
-} from "lucide-react";
-import clsx from "clsx";
-
-import booksDataRaw from "./books.json";
-
+} from "@/components/icons/index";
 import { title } from "@/components/primitives";
 
 type Book = {
@@ -134,7 +134,6 @@ export default function BooksPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [searchText, setSearchText] = useState("");
 
-  // Technology/Category filter definitions
   const categoryFilters = [
     {
       name: "Programming",
@@ -242,7 +241,6 @@ export default function BooksPage() {
         />
       </div>
 
-      {/* Category Filters */}
       <div className="flex flex-wrap gap-3 mt-6 items-center">
         <span className="text-sm font-medium text-neutral-300 mr-2">
           Categories:

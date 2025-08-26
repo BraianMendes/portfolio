@@ -6,7 +6,8 @@ import { SwitchProps, useSwitch } from "@heroui/switch";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 import clsx from "clsx";
-import { Sun, Moon } from "lucide-react";
+
+import { Sun, Moon } from "@/components/icons/index";
 
 export interface ThemeSwitchProps {
   className?: string;

@@ -1,7 +1,6 @@
 import { SmartTags, TagBadge } from "@/components/smart-tags";
 
 export default function TagsDemo() {
-  // Dados de exemplo para demonstrar as funcionalidades
   const exampleProjects = [
     {
       id: "1",
@@ -77,7 +76,6 @@ export default function TagsDemo() {
         </div>
       </div>
 
-      {/* Demonstração das categorias de tags */}
       <div className="bg-neutral-800/50 rounded-xl p-6 mb-8">
         <h2 className="text-xl font-semibold text-white mb-4">
           🏷️ Categorias de Tags
@@ -127,7 +125,6 @@ export default function TagsDemo() {
         </div>
       </div>
 
-      {/* Cards de exemplo */}
       <div className="space-y-6">
         <h2 className="text-xl font-semibold text-white">
           📦 Cards de Projeto
@@ -142,7 +139,6 @@ export default function TagsDemo() {
               key={project.id}
               className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 min-h-[280px] flex flex-col"
             >
-              {/* Header do card */}
               <div className="mb-4">
                 <h3 className="font-bold text-white text-lg mb-2">
                   {project.title}
@@ -152,7 +148,6 @@ export default function TagsDemo() {
                 </div>
               </div>
 
-              {/* Tags inteligentes */}
               <div className="mt-auto">
                 <SmartTags
                   className="w-full"
@@ -166,7 +161,6 @@ export default function TagsDemo() {
         </div>
       </div>
 
-      {/* Benefícios */}
       <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl p-6 border border-blue-500/20">
         <h2 className="text-xl font-semibold text-white mb-4">
           ✅ Benefícios Implementados

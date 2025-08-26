@@ -1,4 +1,3 @@
-// Export common icons from Lucide React with consistent naming
 export {
   Github,
   Bot,
@@ -34,9 +33,10 @@ export {
   Smartphone,
   Laptop,
   Monitor,
+  Triangle,
+  Terminal,
 } from "lucide-react";
 
-// Alias some icons for better semantic naming in our context
 export { Brain as AI } from "lucide-react";
 export { BarChart3 as Data } from "lucide-react";
 export { Cpu as IoT } from "lucide-react";
@@ -47,18 +47,25 @@ export { FileSpreadsheet as Excel } from "lucide-react";
 export { Code2 as JavaScript } from "lucide-react";
 export { Database as SQL } from "lucide-react";
 
-// Re-export custom icons that don't have good Lucide equivalents
-export {
-  PythonIcon,
-  ReactIcon,
-  RIcon,
-  TableauIcon,
-  ArduinoIcon,
-  RaspberryPiIcon,
-  NextJSIcon,
-  CSSIcon,
-  // Keep logo and theme icons as they are
-  Logo,
-  DiscordIcon,
-  TwitterIcon as TwitterCustom, // Keep custom Twitter if needed
-} from "../icons";
+export { Code2 as PythonIcon } from "lucide-react";
+export { Monitor as ReactIcon } from "lucide-react";
+export { Code2 as JavaScriptIcon } from "lucide-react";
+export { BarChart3 as RIcon } from "lucide-react";
+export { Database as SQLIcon } from "lucide-react";
+export { FileSpreadsheet as ExcelIcon } from "lucide-react";
+export { BarChart3 as TableauIcon } from "lucide-react";
+export { Cpu as ArduinoIcon } from "lucide-react";
+export { Cpu as RaspberryPiIcon } from "lucide-react";
+export { Monitor as NextJSIcon } from "lucide-react";
+export { Paintbrush as CSSIcon } from "lucide-react";
+export { Brain as AIIcon } from "lucide-react";
+export { BarChart3 as DataIcon } from "lucide-react";
+export { Wifi as IoTIcon } from "lucide-react";
+export { Users as DiscordIcon } from "lucide-react";
+export { Twitter as TwitterIcon } from "lucide-react";
+
+export { Logo } from "./logo";
+
+export { Icon, getIcon } from "./registry";
+export type { IconName } from "./registry";
+export type { IconProps, IconComponent } from "./types";

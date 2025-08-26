@@ -14,12 +14,12 @@ import { Popover, Transition } from "@headlessui/react";
 import { ChevronDownIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import { Github, Terminal } from "lucide-react";
 
 import projectsDataRaw from "./projects.json";
 
+import { Github, Terminal } from "@/components/icons/index";
 import { title } from "@/components/primitives";
-import { AIIcon, DataIcon, IoTIcon } from "@/components/icons";
+import { AIIcon, DataIcon, IoTIcon } from "@/components/icons/index";
 
 type ProjectType = {
   id: string;

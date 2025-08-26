@@ -2,8 +2,8 @@
 
 import { button as buttonStyles } from "@heroui/theme";
 import { Link } from "@heroui/link";
-import { Github } from "lucide-react";
 
+import { Github } from "@/components/icons/index";
 import { title, subtitle } from "@/components/primitives";
 import { siteConfig } from "@/config/site";
 
