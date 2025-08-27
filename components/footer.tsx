@@ -10,6 +10,7 @@ export function Footer() {
           isExternal
           className="text-primary-400 hover:underline underline-offset-2 transition"
           href="https://github.com/BraianMendes"
+          rel="noopener noreferrer"
         >
           @BraianMendes
         </Link>

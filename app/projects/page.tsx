@@ -1,213 +1,54 @@
 "use client";
 
-import { useState, useMemo, Fragment } from "react";
+import type { ProjectListItem } from "@/types/domain";
+
+import { useMemo } from "react";
 import { Image, Input, Button } from "@heroui/react";
-import { Popover, Transition } from "@headlessui/react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 
 import projectsDataRaw from "./projects.json";
 
-import {
-  ChevronDown,
-  Check,
-  Github,
-  Brain,
-  BarChart3,
-  Cpu,
-  Triangle,
-} from "@/components/icons/index";
+import { Github } from "@/components/icons/index";
 import { title } from "@/components/primitives";
-import {
-  ReactIcon,
-  CSSIcon,
-  JavaScriptIcon,
-  PythonIcon,
-} from "@/components/icons/index";
 import { SmartTags } from "@/components/smart-tags";
+import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
+import { useToggleList } from "@/hooks/useToggleList";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
+import { techFilters } from "@/config/tech-filters";
+import { getFilterLabel } from "@/config/i18n";
 
-type ProjectType = {
-  id: string;
-  title: string;
-  description: string;
-  overview: string;
-  howItWorks: string[];
-  tools: string[];
-  limitations: string[];
-  image: string;
-  tags: string[];
-  slug: string;
-  githubUrl?: string;
-};
+const projectsData: ProjectListItem[] = projectsDataRaw as ProjectListItem[];
 
-const projectsData: ProjectType[] = projectsDataRaw;
-
-function getAllTags(data: ProjectType[]) {
+function getAllTags(data: ProjectListItem[]) {
   const tags = new Set<string>();
 
-  data.forEach((proj) => proj.tags.forEach((t) => tags.add(t)));
+  data.forEach((proj) => proj.tags.forEach((t: string) => tags.add(t)));
 
   return Array.from(tags).sort();
 }
 
-function getAllTools(data: ProjectType[]) {
+function getAllTools(data: ProjectListItem[]) {
   const tools = new Set<string>();
 
-  data.forEach((proj) => proj.tools.forEach((tool) => tools.add(tool)));
+  data.forEach((proj) => proj.tools.forEach((tool: string) => tools.add(tool)));
 
   return Array.from(tools).sort();
-}
-
-function MultiSelectPopover({
-  label,
-  items,
-  selected,
-  setSelected,
-  allLabel = "All",
-}: {
-  label: string;
-  items: string[];
-  selected: string[];
-  setSelected: (val: string[]) => void;
-  allLabel?: string;
-}) {
-  function toggleItem(item: string) {
-    setSelected(
-      selected.includes(item)
-        ? selected.filter((i) => i !== item)
-        : [...selected, item],
-    );
-  }
-  function clearAll() {
-    setSelected([]);
-  }
-
-  return (
-    <Popover className="relative">
-      {({ open }) => (
-        <>
-          <Popover.Button
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl shadow transition text-base font-medium border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 outline-none ${open ? "ring-2 ring-primary-500" : ""} ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
-          >
-            {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
-            />
-          </Popover.Button>
-          <Transition
-            as={Fragment}
-            enter="transition duration-150 ease-out"
-            enterFrom="opacity-0 scale-95 -translate-y-2"
-            enterTo="opacity-100 scale-100 translate-y-0"
-            leave="transition duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100 translate-y-0"
-            leaveTo="opacity-0 scale-95 -translate-y-2"
-          >
-            <Popover.Panel className="absolute z-20 mt-2 w-56 rounded-xl shadow-2xl bg-neutral-900 ring-1 ring-black/30 flex flex-col max-h-72 overflow-auto">
-              <button
-                className={`text-left px-4 py-2 rounded-xl transition hover:bg-primary-900/10 focus:bg-primary-900/10 ${!selected.length ? "text-primary-400 font-semibold" : "text-neutral-200"}`}
-                onClick={clearAll}
-              >
-                {allLabel}
-              </button>
-              <div className="h-px bg-neutral-800 my-1" />
-              {items.map((item) => (
-                <label
-                  key={item}
-                  className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-primary-900/10 rounded-xl transition ${selected.includes(item) ? "text-primary-400 font-semibold" : "text-neutral-200"}`}
-                >
-                  <input
-                    checked={selected.includes(item)}
-                    className="accent-primary-500 rounded mr-2"
-                    type="checkbox"
-                    onChange={() => toggleItem(item)}
-                  />
-                  {item}
-                  {selected.includes(item) && (
-                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
-                  )}
-                </label>
-              ))}
-            </Popover.Panel>
-          </Transition>
-        </>
-      )}
-    </Popover>
-  );
 }
 
 export default function ProjectsPage() {
   const router = useRouter();
   const allTags = useMemo(() => getAllTags(projectsData), []);
   const allTools = useMemo(() => getAllTools(projectsData), []);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedTools, setSelectedTools] = useState<string[]>([]);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-  const [searchText, setSearchText] = useState("");
+  const { list: selectedTags, setList: setSelectedTags } =
+    useToggleList<string>([]);
+  const { list: selectedTools, setList: setSelectedTools } =
+    useToggleList<string>([]);
+  const { list: selectedLanguages, toggle: toggleLanguageFilter } =
+    useToggleList<string>([]);
+  const { query: searchText, onChange: onSearchChange } = useSearchQuery("");
 
-  const techFilters = [
-    {
-      name: "JavaScript",
-      icon: JavaScriptIcon,
-      tags: ["JavaScript", "JS", "TypeScript"],
-    },
-    {
-      name: "React",
-      icon: ReactIcon,
-      tags: ["React", "Next.js"],
-    },
-    {
-      name: "Next.js",
-      icon: Triangle,
-      tags: ["Next.js"],
-    },
-    {
-      name: "Python",
-      icon: PythonIcon,
-      tags: ["Python", "Tesseract.js", "OCR"],
-    },
-    {
-      name: "CSS",
-      icon: CSSIcon,
-      tags: ["CSS", "Tailwind CSS", "Styling"],
-    },
-    {
-      name: "AI/ML",
-      icon: Brain,
-      tags: [
-        "AI",
-        "Machine Learning",
-        "NLP",
-        "OCR",
-        "Compromise",
-        "Tesseract.js",
-      ],
-    },
-    {
-      name: "Frontend",
-      icon: BarChart3,
-      tags: [
-        "React",
-        "Next.js",
-        "HeroUI",
-        "Framer Motion",
-        "TypeScript",
-        "JavaScript",
-      ],
-    },
-    {
-      name: "UI/UX",
-      icon: Cpu,
-      tags: [
-        "HeroUI",
-        "Tailwind CSS",
-        "next-themes",
-        "Framer Motion",
-        "UI",
-        "Portfolio",
-      ],
-    },
-  ];
+  // techFilters now imported from config
 
   const filtered = useMemo(
     () =>
@@ -243,14 +84,6 @@ export default function ProjectsPage() {
     [selectedTags, selectedTools, selectedLanguages, searchText, techFilters],
   );
 
-  function toggleLanguageFilter(languageName: string) {
-    setSelectedLanguages((prev) =>
-      prev.includes(languageName)
-        ? prev.filter((l) => l !== languageName)
-        : [...prev, languageName],
-    );
-  }
-
   return (
     <div className="px-4 sm:px-8 py-6 max-w-[1440px] mx-auto">
       <h1 className={title()}>Projects</h1>
@@ -260,17 +93,17 @@ export default function ProjectsPage() {
           className="max-w-xs rounded-xl bg-neutral-900 border border-neutral-700 text-sm focus:ring-primary-500"
           placeholder="Search by title, tag, tool..."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={onSearchChange}
         />
         <MultiSelectPopover
-          allLabel="All Tags"
+          allLabel={getFilterLabel("allTags")}
           items={allTags}
           label="Tags"
           selected={selectedTags}
           setSelected={setSelectedTags}
         />
         <MultiSelectPopover
-          allLabel="All Tools"
+          allLabel={getFilterLabel("allTools")}
           items={allTools}
           label="Tools"
           selected={selectedTools}
@@ -296,6 +129,7 @@ export default function ProjectsPage() {
                   : "bg-neutral-800/50 border-neutral-700 text-neutral-300 hover:bg-neutral-700/70 hover:border-neutral-600",
               )}
               title={`Filter by ${filter.name}`}
+              type="button"
               onClick={() => toggleLanguageFilter(filter.name)}
             >
               <Icon size={16} />
@@ -313,17 +147,10 @@ export default function ProjectsPage() {
         )}
         {filtered.map((project) => (
           <div key={project.id} className="relative group">
-            <div
-              className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden min-h-[400px] flex flex-col cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-primary-500/20 hover:border-primary-500/30 group-hover:scale-105 group-hover:z-50 group-hover:relative"
-              role="button"
-              tabIndex={0}
+            <button
+              className="text-left bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden min-h-[400px] w-full flex flex-col cursor-pointer transition-all duration-300 ease-out hover:shadow-2xl hover:shadow-primary-500/20 hover:border-primary-500/30 group-hover:scale-105 group-hover:z-50 group-hover:relative"
+              type="button"
               onClick={() => router.push(`/projects/${project.slug}`)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  router.push(`/projects/${project.slug}`);
-                }
-              }}
             >
               <div
                 className="w-full h-[140px] bg-neutral-800 flex items-center justify-center overflow-hidden relative"
@@ -343,6 +170,7 @@ export default function ProjectsPage() {
                     as="a"
                     className="absolute top-3 right-3 z-10 p-1 rounded-full bg-white/80 backdrop-blur hover:bg-white"
                     href={project.githubUrl}
+                    rel="noopener noreferrer"
                     target="_blank"
                     variant="light"
                     onClick={(e) => e.stopPropagation()}
@@ -375,7 +203,7 @@ export default function ProjectsPage() {
                   />
                 </div>
               </div>
-            </div>
+            </button>
           </div>
         ))}
       </div>

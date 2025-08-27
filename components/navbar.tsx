@@ -51,7 +51,12 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2">
-          <Link isExternal aria-label="Github" href={siteConfig.links.github}>
+          <Link
+            isExternal
+            aria-label="Github"
+            href={siteConfig.links.github}
+            rel="noopener noreferrer"
+          >
             <Github className="text-default-500 w-5 h-5" />
           </Link>
         </NavbarItem>
@@ -69,7 +74,12 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <Link isExternal aria-label="Github" href={siteConfig.links.github}>
+        <Link
+          isExternal
+          aria-label="Github"
+          href={siteConfig.links.github}
+          rel="noopener noreferrer"
+        >
           <Github className="text-default-500 w-5 h-5" />
         </Link>
         <NavbarMenuToggle />

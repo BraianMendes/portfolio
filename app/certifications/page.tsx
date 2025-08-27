@@ -2,36 +2,29 @@
 
 import { useState, useMemo, Fragment } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
-import { Popover, Transition, Dialog } from "@headlessui/react";
+import { Transition, Dialog } from "@headlessui/react";
 import clsx from "clsx";
 
 import certificationsData from "./certifications.json";
 
-import { ChevronDown, X, Check } from "@/components/icons/index";
+import { X } from "@/components/icons/index";
 import { title } from "@/components/primitives";
-import {
-  RIcon,
-  SQLIcon,
-  ExcelIcon,
-  TableauIcon,
-  ArduinoIcon,
-  RaspberryPiIcon,
-  AIIcon,
-  DataIcon,
-  IoTIcon,
-  PythonIcon,
-} from "@/components/icons/index";
+import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
+import { useToggleList } from "@/hooks/useToggleList";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
+import { certificationsTechFilters as techFilters } from "@/config/certifications-tech-filters";
+import { getFilterLabel } from "@/config/i18n";
 
 type CertType = (typeof certificationsData)[number];
 
 function getAllYears(data: typeof certificationsData) {
-  const years = new Set<string>();
+  const years = new Set<number>();
 
   data.forEach((cert) => {
-    if (cert.date) years.add(new Date(cert.date).getFullYear().toString());
+    if (cert.date) years.add(new Date(cert.date).getFullYear());
   });
 
-  return Array.from(years).sort((a, b) => Number(b) - Number(a));
+  return Array.from(years).sort((a, b) => b - a);
 }
 
 function getAllTags(data: typeof certificationsData) {
@@ -50,151 +43,30 @@ function getAllIssuers(data: typeof certificationsData) {
   return Array.from(issuers).sort();
 }
 
-function MultiSelectPopover({
-  label,
-  items,
-  selected,
-  setSelected,
-  allLabel = "All",
-}: {
-  label: string;
-  items: string[];
-  selected: string[];
-  setSelected: (val: string[]) => void;
-  allLabel?: string;
-}) {
-  function toggleItem(item: string) {
-    setSelected(
-      selected.includes(item)
-        ? selected.filter((i) => i !== item)
-        : [...selected, item],
-    );
-  }
-  function clearAll() {
-    setSelected([]);
-  }
-
-  return (
-    <Popover className="relative">
-      {({ open }) => (
-        <>
-          <Popover.Button
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl shadow transition text-base font-medium border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 outline-none ${
-              open ? "ring-2 ring-primary-500" : ""
-            } ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
-          >
-            {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
-            />
-          </Popover.Button>
-          <Transition
-            as={Fragment}
-            enter="transition duration-150 ease-out"
-            enterFrom="opacity-0 scale-95 -translate-y-2"
-            enterTo="opacity-100 scale-100 translate-y-0"
-            leave="transition duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100 translate-y-0"
-            leaveTo="opacity-0 scale-95 -translate-y-2"
-          >
-            <Popover.Panel className="absolute z-20 mt-2 w-56 rounded-xl shadow-2xl bg-neutral-900 ring-1 ring-black/30 flex flex-col max-h-72 overflow-auto">
-              <button
-                className={`text-left px-4 py-2 rounded-xl transition hover:bg-primary-900/10 focus:bg-primary-900/10 ${
-                  !selected.length
-                    ? "text-primary-400 font-semibold"
-                    : "text-neutral-200"
-                }`}
-                onClick={clearAll}
-              >
-                {allLabel}
-              </button>
-              <div className="h-px bg-neutral-800 my-1" />
-              {items.map((item) => (
-                <label
-                  key={item}
-                  className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-primary-900/10 rounded-xl transition ${
-                    selected.includes(item)
-                      ? "text-primary-400 font-semibold"
-                      : "text-neutral-200"
-                  }`}
-                >
-                  <input
-                    checked={selected.includes(item)}
-                    className="accent-primary-500 rounded mr-2"
-                    type="checkbox"
-                    onChange={() => toggleItem(item)}
-                  />
-                  {item}
-                  {selected.includes(item) && (
-                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
-                  )}
-                </label>
-              ))}
-            </Popover.Panel>
-          </Transition>
-        </>
-      )}
-    </Popover>
-  );
-}
-
 export default function CertificationsPage() {
   const allTags = useMemo(() => getAllTags(certificationsData), []);
   const allYears = useMemo(() => getAllYears(certificationsData), []);
   const allIssuers = useMemo(() => getAllIssuers(certificationsData), []);
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [selectedYears, setSelectedYears] = useState<string[]>([]);
-  const [selectedIssuers, setSelectedIssuers] = useState<string[]>([]);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
-  const [searchText, setSearchText] = useState("");
+  const { list: selectedTags, setList: setSelectedTags } =
+    useToggleList<string>([]);
+  const { list: selectedYears, setList: setSelectedYears } =
+    useToggleList<number>([]);
+  const { list: selectedIssuers, setList: setSelectedIssuers } =
+    useToggleList<string>([]);
+  const { list: selectedLanguages, toggle: toggleLanguageFilter } =
+    useToggleList<string>([]);
+  const { query: searchText, onChange: onSearchChange } = useSearchQuery("");
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalCert, setModalCert] = useState<CertType | null>(null);
   const [modalMode, setModalMode] = useState<"card" | "image">("image");
 
-  const techFilters = [
-    { name: "Python", icon: PythonIcon, tags: ["Python"] },
-    { name: "R", icon: RIcon, tags: ["R", "RStudio"] },
-    { name: "SQL", icon: SQLIcon, tags: ["SQL"] },
-    { name: "Excel", icon: ExcelIcon, tags: ["Excel"] },
-    { name: "Tableau", icon: TableauIcon, tags: ["Tableau"] },
-    { name: "Arduino", icon: ArduinoIcon, tags: ["Arduino"] },
-    { name: "Raspberry Pi", icon: RaspberryPiIcon, tags: ["Raspberry Pi"] },
-    {
-      name: "AI",
-      icon: AIIcon,
-      tags: [
-        "AI",
-        "Artificial Intelligence",
-        "Machine Learning",
-        "Prompt Engineering",
-      ],
-    },
-    {
-      name: "Data",
-      icon: DataIcon,
-      tags: [
-        "Data Analytics",
-        "Data Science",
-        "Data Analysis",
-        "Big Data",
-        "BI",
-        "Dashboard",
-        "Data Storytelling",
-        "Data Visualization",
-      ],
-    },
-    {
-      name: "IoT",
-      icon: IoTIcon,
-      tags: ["IoT", "Internet of Things", "Robotics", "Micro:Bit"],
-    },
-  ];
+  // tech filters imported from config
 
   const filtered = useMemo(
     () =>
       certificationsData.filter((cert) => {
-        const year = new Date(cert.date).getFullYear().toString();
+        const year = new Date(cert.date).getFullYear();
         const tagMatch =
           !selectedTags.length ||
           cert.tags.some((t) => selectedTags.includes(t));
@@ -230,14 +102,6 @@ export default function CertificationsPage() {
     ],
   );
 
-  function toggleLanguageFilter(languageName: string) {
-    setSelectedLanguages((prev) =>
-      prev.includes(languageName)
-        ? prev.filter((l) => l !== languageName)
-        : [...prev, languageName],
-    );
-  }
-
   function openModal(cert: CertType, mode: "card" | "image" = "image") {
     setModalCert(cert);
     setModalOpen(true);
@@ -257,24 +121,24 @@ export default function CertificationsPage() {
           className="max-w-xs rounded-xl bg-neutral-900 border border-neutral-700 text-sm focus:ring-primary-500"
           placeholder="Search by title, area, institution..."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={onSearchChange}
         />
         <MultiSelectPopover
-          allLabel="All Areas"
+          allLabel={getFilterLabel("allAreas")}
           items={allTags}
           label="Areas"
           selected={selectedTags}
           setSelected={setSelectedTags}
         />
         <MultiSelectPopover
-          allLabel="All Years"
+          allLabel={getFilterLabel("allYears")}
           items={allYears}
           label="Year"
           selected={selectedYears}
           setSelected={setSelectedYears}
         />
         <MultiSelectPopover
-          allLabel="All Institutions"
+          allLabel={getFilterLabel("allInstitutions")}
           items={allIssuers}
           label="Institution"
           selected={selectedIssuers}
@@ -324,21 +188,14 @@ export default function CertificationsPage() {
             onClick={() => openModal(cert, "card")}
           >
             <CardBody className="p-0 flex flex-col">
-              <div
+              <button
                 aria-label={`View certificate ${cert.title} in detail`}
-                className="w-full h-[140px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden group relative"
-                role="button"
-                style={{ minHeight: 140, maxHeight: 180, cursor: "zoom-in" }}
-                tabIndex={0}
+                className="w-full h-[140px] bg-neutral-800 flex items-center justify-center rounded-t-2xl overflow-hidden group relative cursor-zoom-in"
+                style={{ minHeight: 140, maxHeight: 180 }}
+                type="button"
                 onClick={(e) => {
                   e.stopPropagation();
                   openModal(cert, "image");
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    openModal(cert, "image");
-                  }
                 }}
               >
                 <Image
@@ -349,7 +206,7 @@ export default function CertificationsPage() {
                   style={{ maxHeight: 180, maxWidth: "100%" }}
                   width={240}
                 />
-              </div>
+              </button>
               <h3 className="font-bold mt-4 mb-1 text-white leading-snug text-base px-4 self-start text-center">
                 {cert.title}
               </h3>

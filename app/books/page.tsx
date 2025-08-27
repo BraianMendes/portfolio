@@ -1,23 +1,17 @@
 "use client";
 
-import { useState, useMemo, Fragment } from "react";
+import { useMemo } from "react";
 import { Card, CardBody, CardFooter, Image, Input } from "@heroui/react";
-import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 
 import booksDataRaw from "./books.json";
 
-import {
-  ChevronDown,
-  Check,
-  BarChart3,
-  Code2,
-  Brain,
-  Settings,
-  Users,
-  Palette,
-} from "@/components/icons/index";
 import { title } from "@/components/primitives";
+import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
+import { useToggleList } from "@/hooks/useToggleList";
+import { useSearchQuery } from "@/hooks/useSearchQuery";
+import { bookCategoryFilters } from "@/config/book-categories";
+import { getFilterLabel } from "@/config/i18n";
 
 type Book = {
   id: number;
@@ -30,7 +24,7 @@ type Book = {
   slug: string;
 };
 
-const booksData: Book[] = booksDataRaw;
+const booksData: Book[] = booksDataRaw as Book[];
 
 function getAllAreas(data: Book[]) {
   const set = new Set<string>();
@@ -48,129 +42,18 @@ function getAllYears(data: Book[]) {
   return Array.from(set).sort((a, b) => b - a);
 }
 
-function MultiSelectPopover<T extends string | number>({
-  label,
-  items,
-  selected,
-  setSelected,
-  allLabel = "All",
-}: {
-  label: string;
-  items: T[];
-  selected: T[];
-  setSelected: (val: T[]) => void;
-  allLabel?: string;
-}) {
-  function toggleItem(item: T) {
-    setSelected(
-      selected.includes(item)
-        ? selected.filter((i) => i !== item)
-        : [...selected, item],
-    );
-  }
-  function clearAll() {
-    setSelected([]);
-  }
-
-  return (
-    <Popover className="relative">
-      {({ open }) => (
-        <>
-          <Popover.Button
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl shadow transition text-base font-medium border border-neutral-700 bg-neutral-900 hover:bg-neutral-800 outline-none ${open ? "ring-2 ring-primary-500" : ""} ${selected.length ? "text-primary-400" : "text-neutral-200"}`}
-          >
-            {selected.length ? `${label}: ${selected.length}` : label}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${open ? "rotate-180" : ""}`}
-            />
-          </Popover.Button>
-          <Transition
-            as={Fragment}
-            enter="transition duration-150 ease-out"
-            enterFrom="opacity-0 scale-95 -translate-y-2"
-            enterTo="opacity-100 scale-100 translate-y-0"
-            leave="transition duration-100 ease-in"
-            leaveFrom="opacity-100 scale-100 translate-y-0"
-            leaveTo="opacity-0 scale-95 -translate-y-2"
-          >
-            <Popover.Panel className="absolute z-20 mt-2 w-52 rounded-xl shadow-2xl bg-neutral-900 ring-1 ring-black/30 flex flex-col max-h-72 overflow-auto">
-              <button
-                className={`text-left px-4 py-2 rounded-xl transition hover:bg-primary-900/10 focus:bg-primary-900/10 ${!selected.length ? "text-primary-400 font-semibold" : "text-neutral-200"}`}
-                onClick={clearAll}
-              >
-                {allLabel}
-              </button>
-              <div className="h-px bg-neutral-800 my-1" />
-              {items.map((item) => (
-                <label
-                  key={item.toString()}
-                  className={`flex items-center gap-2 px-4 py-2 cursor-pointer hover:bg-primary-900/10 rounded-xl transition ${selected.includes(item) ? "text-primary-400 font-semibold" : "text-neutral-200"}`}
-                >
-                  <input
-                    checked={selected.includes(item)}
-                    className="accent-primary-500 rounded mr-2"
-                    type="checkbox"
-                    onChange={() => toggleItem(item)}
-                  />
-                  {item}
-                  {selected.includes(item) && (
-                    <Check className="w-4 h-4 text-primary-400 ml-auto" />
-                  )}
-                </label>
-              ))}
-            </Popover.Panel>
-          </Transition>
-        </>
-      )}
-    </Popover>
-  );
-}
-
 export default function BooksPage() {
   const allAreas = useMemo(() => getAllAreas(booksData), []);
   const allYears = useMemo(() => getAllYears(booksData), []);
-  const [selectedAreas, setSelectedAreas] = useState<string[]>([]);
-  const [selectedYears, setSelectedYears] = useState<number[]>([]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [searchText, setSearchText] = useState("");
+  const { list: selectedAreas, setList: setSelectedAreas } =
+    useToggleList<string>([]);
+  const { list: selectedYears, setList: setSelectedYears } =
+    useToggleList<number>([]);
+  const { list: selectedCategories, toggle: toggleCategoryFilter } =
+    useToggleList<string>([]);
+  const { query: searchText, onChange: onSearchChange } = useSearchQuery("");
 
-  const categoryFilters = [
-    {
-      name: "Programming",
-      icon: Code2,
-      areas: ["Programming", "Software Engineering", "Development"],
-    },
-    {
-      name: "Design",
-      icon: Palette,
-      areas: ["Design", "UI/UX", "Visual Design", "User Experience"],
-    },
-    {
-      name: "Psychology",
-      icon: Brain,
-      areas: [
-        "Psychology",
-        "Decision Making",
-        "Behavioral Science",
-        "Cognitive Science",
-      ],
-    },
-    {
-      name: "Engineering",
-      icon: Settings,
-      areas: ["Software Engineering", "System Design", "Architecture"],
-    },
-    {
-      name: "Data Science",
-      icon: BarChart3,
-      areas: ["Data Science", "Analytics", "Statistics", "Machine Learning"],
-    },
-    {
-      name: "Leadership",
-      icon: Users,
-      areas: ["Leadership", "Management", "Business", "Team Building"],
-    },
-  ];
+  const categoryFilters = bookCategoryFilters;
 
   const filtered = useMemo(() => {
     return booksData.filter((book) => {
@@ -207,14 +90,6 @@ export default function BooksPage() {
     categoryFilters,
   ]);
 
-  function toggleCategoryFilter(categoryName: string) {
-    setSelectedCategories((prev) =>
-      prev.includes(categoryName)
-        ? prev.filter((c) => c !== categoryName)
-        : [...prev, categoryName],
-    );
-  }
-
   return (
     <div className="px-4 sm:px-8 py-6 max-w-[1440px] mx-auto">
       <h1 className={`${title()} text-left`}>Books I Recommend</h1>
@@ -223,17 +98,17 @@ export default function BooksPage() {
           className="max-w-xs rounded-xl bg-neutral-900 border border-neutral-700 text-sm focus:ring-primary-500"
           placeholder="Search by title, author, area, year..."
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={onSearchChange}
         />
         <MultiSelectPopover<string>
-          allLabel="All Areas"
+          allLabel={getFilterLabel("allAreas")}
           items={allAreas}
           label="Areas"
           selected={selectedAreas}
           setSelected={setSelectedAreas}
         />
         <MultiSelectPopover<number>
-          allLabel="All Years"
+          allLabel={getFilterLabel("allYears")}
           items={allYears}
           label="Year"
           selected={selectedYears}
@@ -259,6 +134,7 @@ export default function BooksPage() {
                   : "bg-neutral-800/50 border-neutral-700 text-neutral-300 hover:bg-neutral-700/70 hover:border-neutral-600",
               )}
               title={`Filter by ${filter.name}`}
+              type="button"
               onClick={() => toggleCategoryFilter(filter.name)}
             >
               <Icon size={16} />

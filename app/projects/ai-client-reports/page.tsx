@@ -61,8 +61,7 @@ export default function AIClientReportsPage() {
           width={1000}
         />
       </Card>
-
-  <div className="grid gap-6">
+      <div className="grid gap-6">
         <Card className="rounded-2xl shadow-xl">
           <CardBody className="p-6">
             <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
