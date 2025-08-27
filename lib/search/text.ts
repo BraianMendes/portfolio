@@ -40,3 +40,29 @@ export class IncludesSearchStrategy
     );
   }
 }
+
+// Optional: Decorator that caches normalization per item+query key
+export class CachedSearchStrategy<T extends { title: string }>
+  implements SearchStrategy<T>
+{
+  private cache = new Map<string, boolean>();
+
+  constructor(private readonly inner: SearchStrategy<T>) {}
+
+  private key(item: T, query: string) {
+    // Use title as part of the identity; extend with stable id if available
+    return `${normalize(item.title)}::${normalize(query)}`;
+  }
+
+  matches(item: T, query: string): boolean {
+    const k = this.key(item, query);
+
+    if (this.cache.has(k)) return this.cache.get(k)!;
+
+    const res = this.inner.matches(item, query);
+
+    this.cache.set(k, res);
+
+    return res;
+  }
+}

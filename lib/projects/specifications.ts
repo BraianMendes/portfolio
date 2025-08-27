@@ -18,6 +18,26 @@ export class AndSpecification<T> implements Specification<T> {
   }
 }
 
+export class OrSpecification<T> implements Specification<T> {
+  constructor(private readonly specs: Specification<T>[]) {}
+
+  isSatisfiedBy(item: T): boolean {
+    for (const spec of this.specs) {
+      if (spec.isSatisfiedBy(item)) return true;
+    }
+
+    return false;
+  }
+}
+
+export class NotSpecification<T> implements Specification<T> {
+  constructor(private readonly spec: Specification<T>) {}
+
+  isSatisfiedBy(item: T): boolean {
+    return !this.spec.isSatisfiedBy(item);
+  }
+}
+
 export class TagSpecification implements Specification<ProjectListItem> {
   constructor(private readonly selectedTags: string[]) {}
 
@@ -70,5 +90,31 @@ export class SearchSpecification<T> implements Specification<T> {
 
   isSatisfiedBy(item: T): boolean {
     return this.strategy.matches(this.mapper(item), this.query);
+  }
+}
+
+export class FilterBuilder<T> {
+  private specs: Specification<T>[] = [];
+
+  and(...s: Specification<T>[]) {
+    this.specs.push(...s);
+
+    return this;
+  }
+
+  or(...s: Specification<T>[]) {
+    this.specs.push(new OrSpecification<T>(s));
+
+    return this;
+  }
+
+  not(s: Specification<T>) {
+    this.specs.push(new NotSpecification<T>(s));
+
+    return this;
+  }
+
+  build(): Specification<T> {
+    return new AndSpecification<T>(this.specs);
   }
 }

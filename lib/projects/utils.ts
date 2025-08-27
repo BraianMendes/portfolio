@@ -1,6 +1,7 @@
 import type { ProjectListItem } from "@/types/domain";
 import type { TechFilter } from "@/config/tech-filters";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
+import type { SortStrategy } from "@/lib/projects/sorting";
 
 import {
   AndSpecification,
@@ -34,17 +35,26 @@ export function getAllTools(data: ProjectListItem[]): string[] {
   return Array.from(tools).sort();
 }
 
+export function toTechMap(
+  techFilters: TechFilter[] | Map<string, TechFilter>,
+): Map<string, TechFilter> {
+  return Array.isArray(techFilters)
+    ? new Map(techFilters.map((f) => [f.name, f]))
+    : techFilters;
+}
+
 export function filterProjects(
   projects: ProjectListItem[],
   state: ProjectsFilterState,
   techFilters: TechFilter[] | Map<string, TechFilter>,
-  options?: { searchStrategy?: SearchStrategy<NormalizableProject> },
+  options?: {
+    searchStrategy?: SearchStrategy<NormalizableProject>;
+    sortStrategy?: SortStrategy<ProjectListItem>;
+  },
 ): ProjectListItem[] {
   const { selectedTags, selectedTools, selectedLanguages, searchText } = state;
 
-  const techMap: Map<string, TechFilter> = Array.isArray(techFilters)
-    ? new Map(techFilters.map((f) => [f.name, f]))
-    : techFilters;
+  const techMap = toTechMap(techFilters);
 
   const searchStrategy =
     options?.searchStrategy ?? new IncludesSearchStrategy();
@@ -65,5 +75,11 @@ export function filterProjects(
     ),
   ]);
 
-  return projects.filter((p) => specs.isSatisfiedBy(p));
+  const filtered = projects.filter((p) => specs.isSatisfiedBy(p));
+
+  if (options?.sortStrategy) {
+    return [...filtered].sort((a, b) => options.sortStrategy!.compare(a, b));
+  }
+
+  return filtered;
 }

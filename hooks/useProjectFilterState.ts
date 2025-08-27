@@ -19,8 +19,8 @@ export function useProjectFilterState() {
   const {
     list: selectedLanguages,
     toggle: toggleLanguageFilter,
-  clear: clearLanguages,
-  setList: setSelectedLanguages,
+    clear: clearLanguages,
+    setList: setSelectedLanguages,
   } = useToggleList<string>([]);
 
   const {
@@ -46,7 +46,7 @@ export function useProjectFilterState() {
     actions: {
       setSelectedTags,
       setSelectedTools,
-  setSelectedLanguages,
+      setSelectedLanguages,
       toggleLanguageFilter,
       onSearchChange,
       clearAll,

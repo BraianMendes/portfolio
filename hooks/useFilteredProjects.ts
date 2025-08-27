@@ -2,15 +2,24 @@
 
 import type { ProjectListItem } from "@/types/domain";
 import type { TechFilter } from "@/config/tech-filters";
+import type { SortStrategy } from "@/lib/projects/sorting";
 
 import { useMemo } from "react";
 
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
-import { filterProjects, type ProjectsFilterState } from "@/lib/projects/utils";
-import { IncludesSearchStrategy } from "@/lib/search/text";
+import {
+  filterProjects,
+  toTechMap,
+  type ProjectsFilterState,
+} from "@/lib/projects/utils";
+import {
+  CachedSearchStrategy,
+  IncludesSearchStrategy,
+} from "@/lib/search/text";
 
 type Options = {
   techFilters: TechFilter[] | Map<string, TechFilter>;
+  sortStrategy?: SortStrategy<ProjectListItem>;
 };
 
 export function useFilteredProjects(
@@ -20,16 +29,22 @@ export function useFilteredProjects(
 ) {
   const debouncedSearchText = useDebouncedValue(state.searchText, 300);
 
-  const techMap: Map<string, TechFilter> = Array.isArray(options.techFilters)
-    ? new Map(options.techFilters.map((f) => [f.name, f]))
-    : options.techFilters;
+  const techMap = useMemo(
+    () => toTechMap(options.techFilters),
+    [options.techFilters],
+  );
+
+  const searchStrategy = useMemo(
+    () => new CachedSearchStrategy(new IncludesSearchStrategy()),
+    [],
+  );
 
   const filtered = useMemo(() => {
     return filterProjects(
       projects,
       { ...state, searchText: debouncedSearchText },
       techMap,
-      { searchStrategy: new IncludesSearchStrategy() },
+      { searchStrategy, sortStrategy: options.sortStrategy },
     );
   }, [
     projects,
@@ -38,6 +53,8 @@ export function useFilteredProjects(
     state.selectedLanguages,
     debouncedSearchText,
     techMap,
+    searchStrategy,
+    options.sortStrategy,
   ]);
 
   return filtered;

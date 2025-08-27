@@ -3,6 +3,7 @@
 import type { ProjectListItem } from "@/types/domain";
 
 import { techFilters } from "@/config/tech-filters";
+import { ByTitleAsc } from "@/lib/projects/sorting";
 import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import { useProjectFilterState } from "@/hooks/useProjectFilterState";
 import { useFilteredProjects } from "@/hooks/useFilteredProjects";
@@ -14,6 +15,7 @@ export function useProjectsFilter(projects: ProjectListItem[]) {
 
   const filtered = useFilteredProjects(projects, state, {
     techFilters: new Map(techFilters.map((f) => [f.name, f])),
+    sortStrategy: new ByTitleAsc(),
   });
 
   return {

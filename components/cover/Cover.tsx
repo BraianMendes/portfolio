@@ -1,6 +1,8 @@
 "use client";
 
-import Image, { ImageProps } from "next/image";
+import type { ImageProps } from "next/image";
+
+import Image from "next/image";
 import { useMemo, useState } from "react";
 
 function hashString(str: string): number {
