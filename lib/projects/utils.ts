@@ -1,10 +1,20 @@
 import type { ProjectListItem } from "@/types/domain";
 import type { TechFilter } from "@/config/tech-filters";
+import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
+
+import {
+  AndSpecification,
+  LanguageSpecification,
+  SearchSpecification,
+  TagSpecification,
+  ToolSpecification,
+} from "@/lib/projects/specifications";
+import { IncludesSearchStrategy } from "@/lib/search/text";
 
 export type ProjectsFilterState = {
   selectedTags: string[];
   selectedTools: string[];
-  selectedLanguages: string[]; // names from techFilters
+  selectedLanguages: string[];
   searchText: string;
 };
 
@@ -27,38 +37,33 @@ export function getAllTools(data: ProjectListItem[]): string[] {
 export function filterProjects(
   projects: ProjectListItem[],
   state: ProjectsFilterState,
-  techFilters: TechFilter[],
+  techFilters: TechFilter[] | Map<string, TechFilter>,
+  options?: { searchStrategy?: SearchStrategy<NormalizableProject> },
 ): ProjectListItem[] {
   const { selectedTags, selectedTools, selectedLanguages, searchText } = state;
-  const query = searchText?.toLowerCase() ?? "";
 
-  return projects.filter((proj) => {
-    const tagMatch =
-      !selectedTags.length || proj.tags.some((t) => selectedTags.includes(t));
+  const techMap: Map<string, TechFilter> = Array.isArray(techFilters)
+    ? new Map(techFilters.map((f) => [f.name, f]))
+    : techFilters;
 
-    const toolMatch =
-      !selectedTools.length ||
-      proj.tools.some((t) => selectedTools.includes(t));
+  const searchStrategy =
+    options?.searchStrategy ?? new IncludesSearchStrategy();
 
-    const languageMatch =
-      !selectedLanguages.length ||
-      selectedLanguages.some((lang) => {
-        const filter = techFilters.find((f) => f.name === lang);
+  const specs = new AndSpecification<ProjectListItem>([
+    new TagSpecification(selectedTags),
+    new ToolSpecification(selectedTools),
+    new LanguageSpecification(selectedLanguages, techMap),
+    new SearchSpecification<ProjectListItem>(
+      searchText ?? "",
+      (p) => ({
+        title: p.title,
+        description: p.description,
+        overview: p.overview,
+        tags: p.tags,
+      }),
+      searchStrategy,
+    ),
+  ]);
 
-        return (
-          !!filter &&
-          (filter.tags.some((tag) => proj.tags.includes(tag)) ||
-            filter.tags.some((tag) => proj.tools.includes(tag)))
-        );
-      });
-
-    const searchMatch =
-      !query ||
-      proj.title.toLowerCase().includes(query) ||
-      proj.tags.some((t) => t.toLowerCase().includes(query)) ||
-      proj.description.toLowerCase().includes(query) ||
-      proj.overview.toLowerCase().includes(query);
-
-    return tagMatch && toolMatch && languageMatch && searchMatch;
-  });
+  return projects.filter((p) => specs.isSatisfiedBy(p));
 }

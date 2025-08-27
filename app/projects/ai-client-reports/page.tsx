@@ -1,9 +1,9 @@
 "use client";
-
-import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
+import { Card, CardBody, Chip, Button, Tooltip } from "@heroui/react";
 
 import data from "./ai-client-reports.json";
 
+import Cover from "@/components/cover/Cover";
 import { Github, Bot, Database, FileText, Zap } from "@/components/icons/index";
 
 export default function AIClientReportsPage() {
@@ -53,9 +53,10 @@ export default function AIClientReportsPage() {
         className="mb-8 rounded-2xl overflow-hidden"
         shadow="lg"
       >
-        <Image
+        <Cover
           alt={project.title}
           className="object-cover w-full h-[280px] md:h-[400px]"
+          fallbackTitle={project.title}
           height={400}
           src={project.coverImage}
           width={1000}

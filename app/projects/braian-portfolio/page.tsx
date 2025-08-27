@@ -1,9 +1,10 @@
 "use client";
 
-import { Card, CardBody, Chip, Image, Button, Tooltip } from "@heroui/react";
+import { Card, CardBody, Chip, Button, Tooltip } from "@heroui/react";
 
 import data from "./braian-portfolio.json";
 
+import Cover from "@/components/cover/Cover";
 import { Github } from "@/components/icons/index";
 
 export default function BraianPortfolioPage() {
@@ -53,9 +54,10 @@ export default function BraianPortfolioPage() {
         className="mb-8 rounded-2xl overflow-hidden"
         shadow="lg"
       >
-        <Image
+        <Cover
           alt={project.title}
           className="object-cover w-full h-[280px] md:h-[350px]"
+          fallbackTitle={project.title}
           height={350}
           src={project.coverImage}
           width={900}

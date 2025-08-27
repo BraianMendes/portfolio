@@ -2,84 +2,33 @@
 
 import type { ProjectListItem } from "@/types/domain";
 
-import { useMemo } from "react";
-
 import { techFilters } from "@/config/tech-filters";
-import { useToggleList } from "@/hooks/useToggleList";
-import { useSearchQuery } from "@/hooks/useSearchQuery";
-import {
-  getAllTags,
-  getAllTools,
-  filterProjects,
-  type ProjectsFilterState,
-} from "@/lib/projects/utils";
+import { useAvailableFilters } from "@/hooks/useAvailableFilters";
+import { useProjectFilterState } from "@/hooks/useProjectFilterState";
+import { useFilteredProjects } from "@/hooks/useFilteredProjects";
 
 export function useProjectsFilter(projects: ProjectListItem[]) {
-  const allTags = useMemo(() => getAllTags(projects), [projects]);
-  const allTools = useMemo(() => getAllTools(projects), [projects]);
+  const { allTags, allTools } = useAvailableFilters(projects);
 
-  const {
-    list: selectedTags,
-    setList: setSelectedTags,
-    clear: clearTags,
-  } = useToggleList<string>([]);
-  const {
-    list: selectedTools,
-    setList: setSelectedTools,
-    clear: clearTools,
-  } = useToggleList<string>([]);
-  const {
-    list: selectedLanguages,
-    toggle: toggleLanguageFilter,
-    clear,
-  } = useToggleList<string>([]);
-  const {
-    query: searchText,
-    onChange: onSearchChange,
-    clear: clearSearch,
-  } = useSearchQuery("");
+  const { state, actions } = useProjectFilterState();
 
-  const state: ProjectsFilterState = {
-    selectedTags,
-    selectedTools,
-    selectedLanguages,
-    searchText,
-  };
-
-  const filtered = useMemo(
-    () => filterProjects(projects, state, techFilters),
-    [
-      projects,
-      state.selectedTags,
-      state.selectedTools,
-      state.selectedLanguages,
-      state.searchText,
-    ],
-  );
-
-  function clearAll() {
-    clearTags();
-    clearTools();
-    clear();
-    clearSearch();
-  }
+  const filtered = useFilteredProjects(projects, state, {
+    techFilters: new Map(techFilters.map((f) => [f.name, f])),
+  });
 
   return {
-    // data
     allTags,
     allTools,
     filtered,
-    // filters state
-    selectedTags,
-    selectedTools,
-    selectedLanguages,
-    searchText,
-    // actions
-    setSelectedTags,
-    setSelectedTools,
-    toggleLanguageFilter,
-    onSearchChange,
-    clearAll,
+    selectedTags: state.selectedTags,
+    selectedTools: state.selectedTools,
+    selectedLanguages: state.selectedLanguages,
+    searchText: state.searchText,
+    setSelectedTags: actions.setSelectedTags,
+    setSelectedTools: actions.setSelectedTools,
+    toggleLanguageFilter: actions.toggleLanguageFilter,
+    onSearchChange: actions.onSearchChange,
+    clearAll: actions.clearAll,
   } as const;
 }
 

@@ -28,7 +28,7 @@
       "Performance drops with many simultaneous users.",
       "Requires stable internet connection for AI and WhatsApp Web."
     ],
-    "image": "/images/projects/ai-client-reports.png",
+  "image": "/next.svg",
     "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Vector Search", "Document Processing"],
     "slug": "ai-client-reports",
     "githubUrl": "https://github.com/BraianMendes/ai-client-reports"
@@ -59,7 +59,7 @@
       "Local, limited database (not comprehensive).",
       "Not for real or production use."
     ],
-    "image": "/images/projects/ai-medical-prescription-reader.png",
+  "image": "/next.svg",
     "tags": ["AI", "Healthcare", "OCR", "NLP"],
     "slug": "ai-medical-prescription-reader",
     "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader"
@@ -88,7 +88,7 @@
       "Blog and documentation sections are under construction.",
       "Continuously evolving with new features and content."
     ],
-    "image": "/images/projects/portfolio-cover.png",
+  "image": "/next.svg",
     "tags": ["Portfolio", "Web Development", "Frontend"],
     "slug": "braian-portfolio",
     "githubUrl": "https://github.com/BraianMendes/braian-portfolio"

@@ -66,6 +66,7 @@ export { Twitter as TwitterIcon } from "lucide-react";
 
 export { Logo } from "./logo";
 
-export { Icon, getIcon } from "./registry";
-export type { IconName } from "./registry";
+export { default as Icon } from "./icons-registry";
+export { getIcon } from "./icons-registry";
+export type { IconName } from "./icons-registry";
 export type { IconProps, IconComponent } from "./types";

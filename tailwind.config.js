@@ -16,7 +16,7 @@ const config = {
     },
   },
   darkMode: "class",
-  plugins: [heroui(), require("@tailwindcss/line-clamp")],
+  plugins: [heroui()],
 };
 
 module.exports = config;

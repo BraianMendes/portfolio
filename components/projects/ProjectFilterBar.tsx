@@ -9,7 +9,7 @@ import { getFilterLabel, getUILabel } from "@/config/i18n";
 
 type Props = {
   searchText: string;
-  onSearchChange: (val: string | React.ChangeEvent<HTMLInputElement>) => void;
+  onSearchChange: (val: string) => void;
   allTags: string[];
   selectedTags: string[];
   setSelectedTags: (val: string[]) => void;
@@ -43,7 +43,7 @@ export function ProjectFilterBar({
           className="max-w-xs rounded-xl bg-neutral-900 border border-neutral-700 text-sm focus:ring-primary-500"
           placeholder={getUILabel("searchPlaceholder")}
           value={searchText}
-          onChange={onSearchChange}
+          onChange={(e) => onSearchChange(e.target.value)}
         />
         <MultiSelectPopover
           allLabel={getFilterLabel("allTags")}

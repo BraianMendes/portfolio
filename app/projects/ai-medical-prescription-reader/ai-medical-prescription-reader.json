@@ -3,7 +3,7 @@
   "title": "Intelligent Medical Prescription Reader",
   "subtitle": "POC for intelligent reading of medical prescriptions with OCR and NLP",
   "tags": ["AI", "Healthcare", "OCR", "NLP"],
-  "coverImage": "/images/projects/ai-medical-prescription-reader.png",
+  "coverImage": "/next.svg",
   "githubUrl": "https://github.com/BraianMendes/AI_Medical_Prescription_Reader",
   "demoUrl": "",
   "description": "POC web app using Next.js, Tesseract.js (OCR), and Compromise (NLP) to read, interpret, and standardize information extracted from medical prescriptions in image format. Automates the reading and understanding of prescriptions using AI, making the process faster, safer, and less prone to human error.",

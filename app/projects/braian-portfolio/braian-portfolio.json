@@ -3,7 +3,7 @@
   "title": "Braian Mendes Portfolio",
   "subtitle": "Modern, accessible, and filterable portfolio built with Next.js, React, and Tailwind CSS",
   "tags": ["Portfolio", "Web Development", "Frontend"],
-  "coverImage": "/images/projects/portfolio-cover.png",
+  "coverImage": "/next.svg",
   "githubUrl": "https://github.com/BraianMendes/braian-portfolio",
   "demoUrl": "",
   "description": "Personal portfolio built with Next.js, React, and Tailwind CSS. Showcases my projects, certifications, recommended books, and blog posts. Features advanced filtering, responsive and accessible UI, and a modern developer experience.",
