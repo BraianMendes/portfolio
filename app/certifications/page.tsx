@@ -13,6 +13,7 @@ import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
 import { useToggleList } from "@/hooks/useToggleList";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { certificationsTechFilters as techFilters } from "@/config/certifications-tech-filters";
+import { useCertificationsFilterFactory } from "@/lib/certifications/di";
 import { getFilterLabel } from "@/config/i18n";
 
 type CertType = (typeof certificationsData)[number];
@@ -44,6 +45,7 @@ function getAllIssuers(data: typeof certificationsData) {
 }
 
 export default function CertificationsPage() {
+  const getFacade = useCertificationsFilterFactory();
   const allTags = useMemo(() => getAllTags(certificationsData), []);
   const allYears = useMemo(() => getAllYears(certificationsData), []);
   const allIssuers = useMemo(() => getAllIssuers(certificationsData), []);
@@ -60,47 +62,28 @@ export default function CertificationsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalCert, setModalCert] = useState<CertType | null>(null);
   const [modalMode, setModalMode] = useState<"card" | "image">("image");
+  const filtered = useMemo(() => {
+    const facade = getFacade();
 
-  // tech filters imported from config
-
-  const filtered = useMemo(
-    () =>
-      certificationsData.filter((cert) => {
-        const year = new Date(cert.date).getFullYear();
-        const tagMatch =
-          !selectedTags.length ||
-          cert.tags.some((t) => selectedTags.includes(t));
-        const yearMatch = !selectedYears.length || selectedYears.includes(year);
-        const issuerMatch =
-          !selectedIssuers.length || selectedIssuers.includes(cert.issuer);
-        const languageMatch =
-          !selectedLanguages.length ||
-          selectedLanguages.some((lang) => {
-            const filter = techFilters.find((f) => f.name === lang);
-
-            return filter && filter.tags.some((tag) => cert.tags.includes(tag));
-          });
-        const searchMatch =
-          !searchText ||
-          cert.title.toLowerCase().includes(searchText.toLowerCase()) ||
-          cert.tags.some((t) =>
-            t.toLowerCase().includes(searchText.toLowerCase()),
-          ) ||
-          cert.issuer.toLowerCase().includes(searchText.toLowerCase());
-
-        return (
-          tagMatch && yearMatch && issuerMatch && languageMatch && searchMatch
-        );
-      }),
-    [
-      selectedTags,
-      selectedYears,
-      selectedIssuers,
-      selectedLanguages,
-      searchText,
+    return facade.filter(
+      certificationsData,
+      {
+        selectedTags,
+        selectedIssuers,
+        selectedYears,
+        selectedGroups: selectedLanguages,
+        searchText,
+      },
       techFilters,
-    ],
-  );
+    );
+  }, [
+    selectedTags,
+    selectedYears,
+    selectedIssuers,
+    selectedLanguages,
+    searchText,
+    getFacade,
+  ]);
 
   function openModal(cert: CertType, mode: "card" | "image" = "image") {
     setModalCert(cert);

@@ -20,8 +20,8 @@ export function ProjectsClient({ projects }: Props) {
     setSelectedTags,
     selectedTools,
     setSelectedTools,
-    selectedLanguages,
-    toggleLanguageFilter,
+    selectedGroups,
+    toggleGroupFilter,
     searchText,
     onSearchChange,
   } = useUrlSyncedProjectsFilter(projects);
@@ -34,12 +34,12 @@ export function ProjectsClient({ projects }: Props) {
         className="mt-8"
         clearAll={clearAll}
         searchText={searchText}
-        selectedLanguages={selectedLanguages}
+        selectedGroups={selectedGroups}
         selectedTags={selectedTags}
         selectedTools={selectedTools}
         setSelectedTags={setSelectedTags}
         setSelectedTools={setSelectedTools}
-        toggleLanguageFilter={toggleLanguageFilter}
+        toggleGroupFilter={toggleGroupFilter}
         onSearchChange={onSearchChange}
       />
 

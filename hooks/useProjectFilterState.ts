@@ -17,10 +17,10 @@ export function useProjectFilterState() {
   } = useToggleList<string>([]);
 
   const {
-    list: selectedLanguages,
-    toggle: toggleLanguageFilter,
-    clear: clearLanguages,
-    setList: setSelectedLanguages,
+    list: selectedGroups,
+    toggle: toggleGroupFilter,
+    clear: clearGroups,
+    setList: setSelectedGroups,
   } = useToggleList<string>([]);
 
   const {
@@ -32,7 +32,7 @@ export function useProjectFilterState() {
   function clearAll() {
     clearTags();
     clearTools();
-    clearLanguages();
+    clearGroups();
     clearSearch();
   }
 
@@ -40,18 +40,16 @@ export function useProjectFilterState() {
     state: {
       selectedTags,
       selectedTools,
-      selectedLanguages,
+      selectedGroups,
       searchText,
     },
     actions: {
       setSelectedTags,
       setSelectedTools,
-      setSelectedLanguages,
-      toggleLanguageFilter,
+      setSelectedGroups,
+      toggleGroupFilter,
       onSearchChange,
       clearAll,
     },
   } as const;
 }
-
-export default useProjectFilterState;

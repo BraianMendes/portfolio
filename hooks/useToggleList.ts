@@ -15,5 +15,3 @@ export function useToggleList<T extends string | number>(initial: T[] = []) {
 
   return { list, setList, toggle, clear } as const;
 }
-
-export default useToggleList;

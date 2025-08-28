@@ -41,7 +41,6 @@ export class IncludesSearchStrategy
   }
 }
 
-// Optional: Decorator that caches normalization per item+query key
 export class CachedSearchStrategy<T extends { title: string }>
   implements SearchStrategy<T>
 {
@@ -50,7 +49,6 @@ export class CachedSearchStrategy<T extends { title: string }>
   constructor(private readonly inner: SearchStrategy<T>) {}
 
   private key(item: T, query: string) {
-    // Use title as part of the identity; extend with stable id if available
     return `${normalize(item.title)}::${normalize(query)}`;
   }
 

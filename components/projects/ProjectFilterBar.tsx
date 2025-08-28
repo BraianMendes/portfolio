@@ -16,8 +16,8 @@ type Props = {
   allTools: string[];
   selectedTools: string[];
   setSelectedTools: (val: string[]) => void;
-  selectedLanguages: string[];
-  toggleLanguageFilter: (name: string) => void;
+  selectedGroups: string[];
+  toggleGroupFilter: (name: string) => void;
   clearAll?: () => void;
   className?: string;
 };
@@ -31,8 +31,8 @@ export function ProjectFilterBar({
   allTools,
   selectedTools,
   setSelectedTools,
-  selectedLanguages,
-  toggleLanguageFilter,
+  selectedGroups,
+  toggleGroupFilter,
   clearAll,
   className,
 }: Props) {
@@ -72,7 +72,7 @@ export function ProjectFilterBar({
         </span>
         {techFilters.map((filter) => {
           const Icon = filter.icon;
-          const isSelected = selectedLanguages.includes(filter.name);
+          const isSelected = selectedGroups.includes(filter.name);
 
           return (
             <button
@@ -85,7 +85,7 @@ export function ProjectFilterBar({
               )}
               title={`${getUILabel("filterBy")} ${filter.name}`}
               type="button"
-              onClick={() => toggleLanguageFilter(filter.name)}
+              onClick={() => toggleGroupFilter(filter.name)}
             >
               <Icon size={16} />
               <span className="text-sm font-medium">{filter.name}</span>

@@ -39,44 +39,47 @@ export class NotSpecification<T> implements Specification<T> {
 }
 
 export class TagSpecification implements Specification<ProjectListItem> {
-  constructor(private readonly selectedTags: string[]) {}
+  private readonly selected: Set<string>;
+
+  constructor(private readonly selectedTags: string[]) {
+    this.selected = new Set(selectedTags);
+  }
 
   isSatisfiedBy(item: ProjectListItem): boolean {
-    return (
-      !this.selectedTags.length ||
-      item.tags.some((t) => this.selectedTags.includes(t))
-    );
+    return !this.selected.size || item.tags.some((t) => this.selected.has(t));
   }
 }
 
 export class ToolSpecification implements Specification<ProjectListItem> {
-  constructor(private readonly selectedTools: string[]) {}
+  private readonly selected: Set<string>;
+
+  constructor(private readonly selectedTools: string[]) {
+    this.selected = new Set(selectedTools);
+  }
 
   isSatisfiedBy(item: ProjectListItem): boolean {
-    return (
-      !this.selectedTools.length ||
-      item.tools.some((t) => this.selectedTools.includes(t))
-    );
+    return !this.selected.size || item.tools.some((t) => this.selected.has(t));
   }
 }
 
-export class LanguageSpecification implements Specification<ProjectListItem> {
+export class GroupSpecification implements Specification<ProjectListItem> {
   constructor(
-    private readonly selectedLanguages: string[],
+    private readonly selectedGroups: string[],
     private readonly techMap: Map<string, TechFilter>,
   ) {}
 
   isSatisfiedBy(item: ProjectListItem): boolean {
-    if (!this.selectedLanguages.length) return true;
+    if (!this.selectedGroups.length) return true;
 
-    return this.selectedLanguages.some((lang) => {
-      const filter = this.techMap.get(lang);
+    const tagSet = new Set(item.tags);
+    const toolSet = new Set(item.tools);
 
-      return (
-        !!filter &&
-        (filter.tags.some((tag) => item.tags.includes(tag)) ||
-          filter.tags.some((tag) => item.tools.includes(tag)))
-      );
+    return this.selectedGroups.some((groupName) => {
+      const filter = this.techMap.get(groupName);
+
+      if (!filter) return false;
+
+      return filter.tags.some((t) => tagSet.has(t) || toolSet.has(t));
     });
   }
 }
@@ -93,28 +96,8 @@ export class SearchSpecification<T> implements Specification<T> {
   }
 }
 
-export class FilterBuilder<T> {
-  private specs: Specification<T>[] = [];
-
-  and(...s: Specification<T>[]) {
-    this.specs.push(...s);
-
-    return this;
-  }
-
-  or(...s: Specification<T>[]) {
-    this.specs.push(new OrSpecification<T>(s));
-
-    return this;
-  }
-
-  not(s: Specification<T>) {
-    this.specs.push(new NotSpecification<T>(s));
-
-    return this;
-  }
-
-  build(): Specification<T> {
-    return new AndSpecification<T>(this.specs);
+export class HasGithubSpecification implements Specification<ProjectListItem> {
+  isSatisfiedBy(item: ProjectListItem): boolean {
+    return Boolean(item.githubUrl && item.githubUrl.trim().length > 0);
   }
 }

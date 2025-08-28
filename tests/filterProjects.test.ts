@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
 import { describe, it, expect } from "vitest";
 
-import { filterProjects, toTechMap } from "@/lib/projects/utils";
+import { filterProjects } from "@/lib/projects/filtering";
+import { toTechMap } from "@/lib/projects/techMap";
 import { IncludesSearchStrategy } from "@/lib/search/text";
 
 const projects = [
@@ -43,7 +44,7 @@ describe("filterProjects", () => {
   it("filters by tag", () => {
     const res = filterProjects(
       projects as any,
-      { selectedTags: ["AI"], selectedTools: [], selectedLanguages: [], searchText: "" },
+  { selectedTags: ["AI"], selectedTools: [], selectedGroups: [], searchText: "" },
       techFilters,
       { searchStrategy: new IncludesSearchStrategy() },
     );
@@ -55,7 +56,7 @@ describe("filterProjects", () => {
   it("filters by tech language group", () => {
     const res = filterProjects(
       projects as any,
-      { selectedTags: [], selectedTools: [], selectedLanguages: ["Frontend"], searchText: "" },
+  { selectedTags: [], selectedTools: [], selectedGroups: ["Frontend"], searchText: "" },
       techFilters,
       { searchStrategy: new IncludesSearchStrategy() },
     );

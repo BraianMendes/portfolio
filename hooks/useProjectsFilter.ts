@@ -24,14 +24,12 @@ export function useProjectsFilter(projects: ProjectListItem[]) {
     filtered,
     selectedTags: state.selectedTags,
     selectedTools: state.selectedTools,
-    selectedLanguages: state.selectedLanguages,
+    selectedGroups: state.selectedGroups,
     searchText: state.searchText,
     setSelectedTags: actions.setSelectedTags,
     setSelectedTools: actions.setSelectedTools,
-    toggleLanguageFilter: actions.toggleLanguageFilter,
+    toggleGroupFilter: actions.toggleGroupFilter,
     onSearchChange: actions.onSearchChange,
     clearAll: actions.clearAll,
   } as const;
 }
-
-export default useProjectsFilter;

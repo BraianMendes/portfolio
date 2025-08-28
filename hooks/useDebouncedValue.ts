@@ -2,7 +2,12 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-export function useDebouncedValue<T>(value: T, delay = 300) {
+import { searchConfig } from "@/config/search";
+
+export function useDebouncedValue<T>(
+  value: T,
+  delay = searchConfig.debounceMs,
+) {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {
@@ -13,5 +18,3 @@ export function useDebouncedValue<T>(value: T, delay = 300) {
 
   return useMemo(() => debounced, [debounced]);
 }
-
-export default useDebouncedValue;

@@ -6,7 +6,8 @@ import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import { useProjectFilterState } from "@/hooks/useProjectFilterState";
 import { useFilteredProjects } from "@/hooks/useFilteredProjects";
 import { techFilters } from "@/config/tech-filters";
-import useProjectsUrlSync from "@/hooks/useProjectsUrlSync";
+import toTechMap from "@/lib/projects/techMap";
+import { useProjectsUrlSync } from "@/hooks/useProjectsUrlSync";
 import { ByTitleAsc } from "@/lib/projects/sorting";
 
 export function useUrlSyncedProjectsFilter(projects: ProjectListItem[]) {
@@ -16,7 +17,7 @@ export function useUrlSyncedProjectsFilter(projects: ProjectListItem[]) {
   useProjectsUrlSync(state, actions);
 
   const filtered = useFilteredProjects(projects, state, {
-    techFilters: new Map(techFilters.map((f) => [f.name, f])),
+    techFilters: toTechMap(techFilters),
     sortStrategy: new ByTitleAsc(),
   });
 
@@ -28,5 +29,3 @@ export function useUrlSyncedProjectsFilter(projects: ProjectListItem[]) {
     ...actions,
   } as const;
 }
-
-export default useUrlSyncedProjectsFilter;

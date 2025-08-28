@@ -20,5 +20,3 @@ export function useSearchQuery(initial = "") {
 
   return { query, setQuery, clear, onChange } as const;
 }
-
-export default useSearchQuery;
