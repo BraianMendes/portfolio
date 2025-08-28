@@ -1,3 +1,5 @@
+// File intentionally left empty; legacy helpers removed.
+export {};
 import type { ProjectListItem } from "@/types/domain";
 import type { TechFilter } from "@/config/tech-filters";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";

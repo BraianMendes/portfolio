@@ -13,6 +13,7 @@ import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
 import { useToggleList } from "@/hooks/useToggleList";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
 import { certificationsTechFilters as techFilters } from "@/config/certifications-tech-filters";
+import toCertTechMap from "@/lib/certifications/techMap";
 import { useCertificationsFilterFactory } from "@/lib/certifications/di";
 import { getFilterLabel } from "@/config/i18n";
 
@@ -74,7 +75,7 @@ export default function CertificationsPage() {
         selectedGroups: selectedLanguages,
         searchText,
       },
-      techFilters,
+      toCertTechMap(techFilters),
     );
   }, [
     selectedTags,

@@ -15,12 +15,12 @@ import {
 import { IncludesSearchStrategy } from "@/lib/search/text";
 import { mapProjectToSearchEntity } from "@/lib/projects/mappers";
 import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects/pipeline";
-import { toTechMap } from "@/lib/projects/techMap";
+// toTechMap adapter is handled at call sites (edge). Internally we use Map-only.
 
 export function filterProjects(
   projects: ProjectListItem[],
   state: ProjectsFilterState,
-  techFilters: TechFilter[] | Map<string, TechFilter>,
+  techFilters: Map<string, TechFilter>,
   options?: {
     searchStrategy?: SearchStrategy<NormalizableProject>;
     sortStrategy?: SortStrategy<ProjectListItem>;
@@ -29,7 +29,7 @@ export function filterProjects(
 ): ProjectListItem[] {
   const { selectedTags, selectedTools, selectedGroups, searchText } = state;
 
-  const techMap = toTechMap(techFilters);
+  const techMap = techFilters;
 
   const searchStrategy =
     options?.searchStrategy ?? new IncludesSearchStrategy();

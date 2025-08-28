@@ -5,7 +5,7 @@ export interface SortStrategy<T = unknown> {
 }
 
 export class NoopSort implements SortStrategy<ProjectListItem> {
-  compare(): number {
+  compare(_a: ProjectListItem, _b: ProjectListItem): number {
     return 0;
   }
 }

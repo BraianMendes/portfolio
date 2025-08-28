@@ -1,7 +1,7 @@
 import type { SearchStrategy, NormalizableProject } from "@/lib/search/text";
 
 import { IncludesSearchStrategy } from "@/lib/search/text";
-import { searchConfig } from "@/config/search";
+import { getSearchConfig } from "@/config/search";
 
 export class TokenSearchStrategy
   implements SearchStrategy<NormalizableProject>
@@ -115,10 +115,41 @@ export class CompositeSearchStrategy
   }
 }
 
+export class LoggingSearchStrategy<T> implements SearchStrategy<T> {
+  constructor(private readonly inner: SearchStrategy<T>) {}
+
+  matches(item: T, query: string): boolean {
+    const res = this.inner.matches(item, query);
+
+    // eslint-disable-next-line no-console
+    console.debug(`[search] q="${query}" => ${res}`);
+
+    return res;
+  }
+}
+
+export class TimedSearchStrategy<T> implements SearchStrategy<T> {
+  constructor(private readonly inner: SearchStrategy<T>) {}
+
+  matches(item: T, query: string): boolean {
+    const start = performance.now?.() ?? Date.now();
+    const res = this.inner.matches(item, query);
+    const end = performance.now?.() ?? Date.now();
+    const ms = Math.max(0, end - start);
+
+    // eslint-disable-next-line no-console
+    console.debug(`[search] took ${ms.toFixed(2)}ms for q="${query}"`);
+
+    return res;
+  }
+}
+
 export type SearchFactoryOptions = {
   kind?: "includes" | "token" | "fuzzy";
   cached?: boolean;
   fuzzyThreshold?: number;
+  log?: boolean;
+  timed?: boolean;
 };
 
 function getCachedWrapper<T>(inner: SearchStrategy<T>) {
@@ -157,16 +188,13 @@ function getCachedWrapper<T>(inner: SearchStrategy<T>) {
 export function createSearchStrategy(
   options: SearchFactoryOptions = {},
 ): SearchStrategy<NormalizableProject> {
-  const envKind = (process.env.NEXT_PUBLIC_SEARCH_STRATEGY || "").toLowerCase();
-  const resolvedKind = (options.kind || envKind || "includes") as
+  const cfg = getSearchConfig();
+  const resolvedKind = (options.kind || cfg.strategyKind || "includes") as
     | "includes"
     | "token"
     | "fuzzy";
 
-  const envThreshold = Number(process.env.NEXT_PUBLIC_SEARCH_FUZZY_THRESHOLD);
-  const threshold = Number.isFinite(envThreshold)
-    ? (envThreshold as number)
-    : (options.fuzzyThreshold ?? searchConfig.fuzzyThreshold);
+  const threshold = options.fuzzyThreshold ?? cfg.fuzzyThreshold;
 
   let base: SearchStrategy<NormalizableProject>;
 
@@ -178,22 +206,31 @@ export function createSearchStrategy(
     base = new IncludesSearchStrategy();
   }
 
-  if (options.cached) {
+  const shouldCache = options.cached ?? cfg.cached;
+
+  if (shouldCache) {
     return getCachedWrapper(base);
   }
 
-  return base;
+  let result: SearchStrategy<NormalizableProject> = base;
+
+  if (options.log) result = new LoggingSearchStrategy(result);
+  if (options.timed) result = new TimedSearchStrategy(result);
+
+  return result;
 }
 
 let defaultStrategySingleton: SearchStrategy<NormalizableProject> | null = null;
 
 export function getDefaultSearchStrategy(): SearchStrategy<NormalizableProject> {
   if (!defaultStrategySingleton) {
-    const fuzzy = new FuzzySearchStrategy(searchConfig.fuzzyThreshold);
-    const composite = new CompositeSearchStrategy(
-      new IncludesSearchStrategy(),
-      fuzzy,
-    );
+    const cfg = getSearchConfig();
+    const fuzzy = new FuzzySearchStrategy(cfg.fuzzyThreshold);
+    let composite: SearchStrategy<NormalizableProject> =
+      new CompositeSearchStrategy(new IncludesSearchStrategy(), fuzzy);
+
+    if (cfg.log) composite = new LoggingSearchStrategy(composite);
+    if (cfg.timed) composite = new TimedSearchStrategy(composite);
 
     defaultStrategySingleton = getCachedWrapper(composite);
   }

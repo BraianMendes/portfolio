@@ -7,29 +7,30 @@ import type { Specification } from "@/lib/projects/specifications";
 
 import { HasGithubSpecification } from "@/lib/projects/specifications";
 import { filterProjects } from "@/lib/projects/filtering";
-import { toTechMap } from "@/lib/projects/techMap";
+// toTechMap adapter is handled at call sites (edge). Internally we use Map-only.
 import { getDefaultSearchStrategy } from "@/lib/search/factory";
+import { getFeatureFlags } from "@/config/flags";
 
 export class ProjectsFilterConfigurator {
   constructor(
     private readonly search: SearchStrategy<NormalizableProject>,
     private readonly sort?: SortStrategy<ProjectListItem>,
+    private readonly additionalSpecs?: Specification<ProjectListItem>[],
   ) {}
 
   run(
     items: ProjectListItem[],
     state: ProjectsFilterState,
-    techFilters: TechFilter[] | Map<string, TechFilter>,
+    techFilters: Map<string, TechFilter>,
   ): ProjectListItem[] {
-    const techMap = toTechMap(techFilters);
+    const techMap = techFilters;
+    const extraSpecifications: Specification<ProjectListItem>[] = [
+      ...(this.additionalSpecs ?? []),
+    ];
 
-    const extraSpecifications: Specification<ProjectListItem>[] = [];
+    const { projectsOnlyGithub } = getFeatureFlags();
 
-    if (
-      (process.env.NEXT_PUBLIC_PROJECTS_ONLY_GITHUB || "")
-        .toLowerCase()
-        .trim() === "true"
-    ) {
+    if (projectsOnlyGithub) {
       extraSpecifications.push(new HasGithubSpecification());
     }
 
@@ -47,7 +48,7 @@ export class ProjectsFilterFacade {
   filter(
     items: ProjectListItem[],
     state: ProjectsFilterState,
-    techFilters: TechFilter[] | Map<string, TechFilter>,
+    techFilters: Map<string, TechFilter>,
   ) {
     return this.configurator.run(items, state, techFilters);
   }

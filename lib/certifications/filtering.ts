@@ -11,7 +11,6 @@ import {
 import { IncludesSearchStrategy } from "@/lib/search/text";
 import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects/pipeline";
 import { mapCertificationToSearchEntity } from "@/lib/certifications/mappers";
-import { toCertTechMap } from "@/lib/certifications/techMap";
 
 export type CertificationsFilterState = {
   selectedTags: string[];
@@ -24,9 +23,7 @@ export type CertificationsFilterState = {
 export function filterCertifications(
   list: Certification[],
   state: CertificationsFilterState,
-  techFilters:
-    | CertificationsTechFilter[]
-    | Map<string, CertificationsTechFilter>,
+  techFilters: Map<string, CertificationsTechFilter>,
   options?: {
     searchStrategy?: SearchStrategy<NormalizableProject>;
     sortStrategy?: SortStrategy<Certification>;
@@ -40,7 +37,7 @@ export function filterCertifications(
     searchText,
   } = state;
 
-  const techMap = toCertTechMap(techFilters);
+  const techMap = techFilters;
 
   const searchStrategy =
     options?.searchStrategy ?? new IncludesSearchStrategy();

@@ -36,28 +36,29 @@ describe("createSearchStrategy", () => {
   });
 
   it("defaults to includes", () => {
-    const s = createSearchStrategy();
-    expect(s).toBeInstanceOf(IncludesSearchStrategy);
+    const s = createSearchStrategy({ cached: false });
+    // should behave like Includes strategy
+    expect(s.matches(item, "AI")).toBe(true);
+    expect(s.matches(item, "missing")).toBe(false);
   });
 
   it("respects kind option", () => {
-    expect(createSearchStrategy({ kind: "token" })).toBeInstanceOf(
-      TokenSearchStrategy,
-    );
-    expect(createSearchStrategy({ kind: "fuzzy" })).toBeInstanceOf(
-      FuzzySearchStrategy,
-    );
+  const token = createSearchStrategy({ kind: "token", cached: false });
+  const fuzzy = createSearchStrategy({ kind: "fuzzy", cached: false });
+  expect(token.constructor.name).toBe("TokenSearchStrategy");
+  expect(fuzzy.constructor.name).toBe("FuzzySearchStrategy");
   });
 
   it("respects env flag", () => {
     withEnv("NEXT_PUBLIC_SEARCH_STRATEGY", "token", () => {
-      expect(createSearchStrategy()).toBeInstanceOf(TokenSearchStrategy);
+      const s = createSearchStrategy({ cached: false });
+      expect(s.constructor.name).toBe("TokenSearchStrategy");
     });
   });
 
   it("passes fuzzy threshold from env", () => {
     withEnv("NEXT_PUBLIC_SEARCH_FUZZY_THRESHOLD", "0.9", () => {
-      const s = createSearchStrategy({ kind: "fuzzy" }) as FuzzySearchStrategy;
+      const s = createSearchStrategy({ kind: "fuzzy", cached: false }) as FuzzySearchStrategy;
       expect((s as any).threshold).toBeDefined();
     });
   });

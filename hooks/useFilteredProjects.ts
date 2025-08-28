@@ -12,7 +12,7 @@ import { searchConfig } from "@/config/search";
 import { useProjectsFilterFactory } from "@/lib/projects/di";
 
 type Options = {
-  techFilters: TechFilter[] | Map<string, TechFilter>;
+  techFilters: Map<string, TechFilter>;
   sortStrategy?: SortStrategy<ProjectListItem>;
 };
 

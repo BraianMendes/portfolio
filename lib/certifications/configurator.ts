@@ -7,7 +7,6 @@ import {
   filterCertifications,
   type CertificationsFilterState,
 } from "@/lib/certifications/filtering";
-import toCertTechMap from "@/lib/certifications/techMap";
 import { getDefaultSearchStrategy } from "@/lib/search/factory";
 
 export class CertificationsFilterConfigurator {
@@ -19,13 +18,9 @@ export class CertificationsFilterConfigurator {
   run(
     items: Certification[],
     state: CertificationsFilterState,
-    techFilters:
-      | CertificationsTechFilter[]
-      | Map<string, CertificationsTechFilter>,
+    techFilters: Map<string, CertificationsTechFilter>,
   ): Certification[] {
-    const techMap = toCertTechMap(techFilters);
-
-    return filterCertifications(items, state, techMap, {
+    return filterCertifications(items, state, techFilters, {
       searchStrategy: this.search,
       sortStrategy: this.sort,
     });
@@ -40,9 +35,7 @@ export class CertificationsFilterFacade {
   filter(
     items: Certification[],
     state: CertificationsFilterState,
-    techFilters:
-      | CertificationsTechFilter[]
-      | Map<string, CertificationsTechFilter>,
+    techFilters: Map<string, CertificationsTechFilter>,
   ) {
     return this.configurator.run(items, state, techFilters);
   }
