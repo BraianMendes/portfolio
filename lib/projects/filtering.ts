@@ -1,9 +1,9 @@
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
-import type { SortStrategy } from "@/lib/projects/sorting";
-import type { Specification } from "@/lib/projects/specifications";
-import type { ProjectsFilterState } from "@/lib/projects/types";
+import type { SortStrategy } from "@/lib/projects";
+import type { Specification } from "@/lib/projects";
+import type { ProjectsFilterState } from "@/lib/projects";
 
 import {
   AndSpecification,
@@ -11,10 +11,10 @@ import {
   SearchSpecification,
   TagSpecification,
   ToolSpecification,
-} from "@/lib/projects/specifications";
+} from "@/lib/projects";
 import { IncludesSearchStrategy } from "@/lib/search/text";
 import { mapProjectToSearchEntity } from "@/lib/projects/mappers";
-import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects/pipeline";
+import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects";
 // toTechMap adapter is handled at call sites (edge). Internally we use Map-only.
 
 export function filterProjects(

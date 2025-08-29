@@ -1,7 +1,7 @@
-import type { SearchStrategy, NormalizableProject } from "@/lib/search/text";
+import type { SearchStrategy, NormalizableProject } from "@/lib/search";
 
-import { IncludesSearchStrategy } from "@/lib/search/text";
-import { getSearchConfig } from "@/config/search";
+import { IncludesSearchStrategy } from "@/lib/search";
+import { getSearchConfig } from "@/config";
 
 export class TokenSearchStrategy
   implements SearchStrategy<NormalizableProject>

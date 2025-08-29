@@ -2,8 +2,7 @@
 import { describe, it, expect } from "vitest";
 
 import type { ProjectListItem } from "@/types/domain";
-import { ProjectsFilterBuilder } from "@/lib/projects/builder";
-import { TagSpecification } from "@/lib/projects/specifications";
+import { ProjectsFilterBuilder, TagSpecification } from "@/lib/projects";
 
 const items: ProjectListItem[] = [
   {
@@ -40,7 +39,12 @@ describe("ProjectsFilterBuilder", () => {
 
     const res = configurator.run(
       items,
-      { selectedTags: [], selectedTools: [], selectedGroups: [], searchText: "" },
+      {
+        selectedTags: [],
+        selectedTools: [],
+        selectedGroups: [],
+        searchText: "",
+      },
       new Map(),
     );
 

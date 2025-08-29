@@ -4,7 +4,7 @@ import type { ProjectListItem } from "@/types/domain";
 
 import { useMemo } from "react";
 
-import { getAllTags, getAllTools } from "@/lib/projects/aggregation";
+import { getAllTags, getAllTools } from "@/lib/projects";
 
 export function useAvailableFilters(projects: ProjectListItem[]) {
   const allTags = useMemo(() => getAllTags(projects), [projects]);

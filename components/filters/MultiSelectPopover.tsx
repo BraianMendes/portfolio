@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { Popover, Transition } from "@headlessui/react";
 
-import { ChevronDown, Check } from "@/components/icons/index";
+import { ChevronDown, Check } from "@/components/icons";
 
 type MultiSelectPopoverProps<T extends string | number> = {
   label: string;

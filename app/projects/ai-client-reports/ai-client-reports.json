@@ -2,7 +2,14 @@
   "id": "ai-client-reports",
   "title": "AI Client Reports",
   "subtitle": "WhatsApp bot with RAG-enhanced AI for generating business reports",
-  "tags": ["AI", "WhatsApp Bot", "RAG", "Business Intelligence", "Vector Search", "Document Processing"],
+  "tags": [
+    "AI",
+    "WhatsApp Bot",
+    "RAG",
+    "Business Intelligence",
+    "Vector Search",
+    "Document Processing"
+  ],
   "coverImage": "/next.svg",
   "githubUrl": "https://github.com/BraianMendes/ai-client-reports",
   "demoUrl": "",

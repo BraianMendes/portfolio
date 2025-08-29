@@ -4,9 +4,9 @@ import { Suspense } from "react";
 
 import ProjectsClient from "./ProjectsClient";
 
-import { defaultProjectsService } from "@/lib/projects/service";
+import { defaultProjectsService } from "@/lib/projects";
 import { title } from "@/components/primitives";
-import { getUILabel } from "@/config/i18n";
+import { getUILabel } from "@/config";
 
 export default async function ProjectsPage() {
   const projectsData: ProjectListItem[] =

@@ -1,12 +1,15 @@
 import type { LucideIcon } from "lucide-react";
 
-import { Brain, BarChart3, Cpu, Triangle } from "@/components/icons/index";
 import {
+  Brain,
+  BarChart3,
+  Cpu,
+  Triangle,
   ReactIcon,
   CSSIcon,
   JavaScriptIcon,
   PythonIcon,
-} from "@/components/icons/index";
+} from "@/components/icons";
 
 export type TechFilter = {
   name: string;

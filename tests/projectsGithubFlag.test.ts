@@ -2,8 +2,8 @@
 import { describe, it, expect, beforeEach, afterEach } from "vitest";
 
 import type { ProjectListItem } from "@/types/domain";
-import { ProjectsFilterConfigurator } from "@/lib/projects/configurator";
-import { getDefaultSearchStrategy } from "@/lib/search/factory";
+import { ProjectsFilterConfigurator } from "@/lib/projects";
+import { getDefaultSearchStrategy } from "@/lib/search";
 
 const projects: ProjectListItem[] = [
   {
@@ -60,7 +60,12 @@ describe("Projects extra specification via env flag", () => {
   it("keeps all projects when flag is off", () => {
     const res = configurator.run(
       projects,
-      { selectedTags: [], selectedTools: [], selectedGroups: [], searchText: "" },
+      {
+        selectedTags: [],
+        selectedTools: [],
+        selectedGroups: [],
+        searchText: "",
+      },
       new Map(),
     );
 
@@ -71,7 +76,12 @@ describe("Projects extra specification via env flag", () => {
     withEnv("NEXT_PUBLIC_PROJECTS_ONLY_GITHUB", "true", () => {
       const res = configurator.run(
         projects,
-        { selectedTags: [], selectedTools: [], selectedGroups: [], searchText: "" },
+        {
+          selectedTags: [],
+          selectedTools: [],
+          selectedGroups: [],
+          searchText: "",
+        },
         new Map(),
       );
       expect(res.map((p) => p.id)).toEqual(["1"]);

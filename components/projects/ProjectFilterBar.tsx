@@ -3,9 +3,8 @@
 import { Input, Button } from "@heroui/react";
 import clsx from "clsx";
 
-import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
-import { techFilters } from "@/config/tech-filters";
-import { getFilterLabel, getUILabel } from "@/config/i18n";
+import { MultiSelectPopover } from "@/components/filters";
+import { techFilters, getFilterLabel, getUILabel } from "@/config";
 
 type Props = {
   searchText: string;

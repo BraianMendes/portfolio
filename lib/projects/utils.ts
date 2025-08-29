@@ -1,9 +1,9 @@
 // File intentionally left empty; legacy helpers removed.
 export {};
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
-import type { SortStrategy } from "@/lib/projects/sorting";
+import type { SortStrategy } from "@/lib/projects";
 
 import {
   AndSpecification,
@@ -11,10 +11,10 @@ import {
   SearchSpecification,
   TagSpecification,
   ToolSpecification,
-} from "@/lib/projects/specifications";
+} from "@/lib/projects";
 import { IncludesSearchStrategy } from "@/lib/search/text";
-import { mapProjectToSearchEntity } from "@/lib/projects/mappers";
-import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects/pipeline";
+import { mapProjectToSearchEntity } from "@/lib/projects";
+import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects";
 
 export type ProjectsFilterState = {
   selectedTags: string[];

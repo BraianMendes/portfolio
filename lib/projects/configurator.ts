@@ -1,15 +1,15 @@
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
-import type { SortStrategy } from "@/lib/projects/sorting";
-import type { ProjectsFilterState } from "@/lib/projects/types";
-import type { Specification } from "@/lib/projects/specifications";
+import type { SortStrategy } from "@/lib/projects";
+import type { ProjectsFilterState } from "@/lib/projects";
+import type { Specification } from "@/lib/projects";
 
-import { HasGithubSpecification } from "@/lib/projects/specifications";
-import { filterProjects } from "@/lib/projects/filtering";
+import { HasGithubSpecification } from "@/lib/projects";
+import { filterProjects } from "@/lib/projects";
 // toTechMap adapter is handled at call sites (edge). Internally we use Map-only.
 import { getDefaultSearchStrategy } from "@/lib/search/factory";
-import { getFeatureFlags } from "@/config/flags";
+import { getFeatureFlags } from "@/config";
 
 export class ProjectsFilterConfigurator {
   constructor(

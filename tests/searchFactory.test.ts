@@ -1,13 +1,13 @@
 /// <reference types="vitest" />
 import { describe, it, expect, beforeEach } from "vitest";
 
-import { IncludesSearchStrategy } from "@/lib/search/text";
+import { IncludesSearchStrategy } from "@/lib/search";
 import {
   createSearchStrategy,
   TokenSearchStrategy,
   FuzzySearchStrategy,
-} from "@/lib/search/factory";
-import type { NormalizableProject } from "@/lib/search/text";
+} from "@/lib/search";
+import type { NormalizableProject } from "@/lib/search";
 
 const item: NormalizableProject = {
   title: "AI Client Reports",
@@ -43,10 +43,10 @@ describe("createSearchStrategy", () => {
   });
 
   it("respects kind option", () => {
-  const token = createSearchStrategy({ kind: "token", cached: false });
-  const fuzzy = createSearchStrategy({ kind: "fuzzy", cached: false });
-  expect(token.constructor.name).toBe("TokenSearchStrategy");
-  expect(fuzzy.constructor.name).toBe("FuzzySearchStrategy");
+    const token = createSearchStrategy({ kind: "token", cached: false });
+    const fuzzy = createSearchStrategy({ kind: "fuzzy", cached: false });
+    expect(token.constructor.name).toBe("TokenSearchStrategy");
+    expect(fuzzy.constructor.name).toBe("FuzzySearchStrategy");
   });
 
   it("respects env flag", () => {
@@ -58,7 +58,10 @@ describe("createSearchStrategy", () => {
 
   it("passes fuzzy threshold from env", () => {
     withEnv("NEXT_PUBLIC_SEARCH_FUZZY_THRESHOLD", "0.9", () => {
-      const s = createSearchStrategy({ kind: "fuzzy", cached: false }) as FuzzySearchStrategy;
+      const s = createSearchStrategy({
+        kind: "fuzzy",
+        cached: false,
+      }) as FuzzySearchStrategy;
       expect((s as any).threshold).toBeDefined();
     });
   });
@@ -74,7 +77,6 @@ describe("strategies", () => {
   it("fuzzy strategy matches near strings", () => {
     const s = new FuzzySearchStrategy(0.6);
     expect(s.matches(item, "client report")).toBe(true);
-    expect(s.matches(item, "portfolio"))
-      .toBe(false);
+    expect(s.matches(item, "portfolio")).toBe(false);
   });
 });

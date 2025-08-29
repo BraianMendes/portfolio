@@ -1,5 +1,5 @@
 import type { Certification } from "@/types/domain";
-import type { CertificationsTechFilter } from "@/config/certifications-tech-filters";
+import type { CertificationsTechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
 import type { SortStrategy } from "@/lib/projects/sorting";
 
@@ -10,7 +10,7 @@ import {
 } from "@/lib/projects/specifications";
 import { IncludesSearchStrategy } from "@/lib/search/text";
 import { Pipeline, SpecificationStep, SortStep } from "@/lib/projects/pipeline";
-import { mapCertificationToSearchEntity } from "@/lib/certifications/mappers";
+import { mapCertificationToSearchEntity } from "@/lib/certifications";
 
 export type CertificationsFilterState = {
   selectedTags: string[];

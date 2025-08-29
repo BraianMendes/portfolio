@@ -1,15 +1,15 @@
 "use client";
 
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 import type { SortStrategy } from "@/lib/projects/sorting";
-import type { ProjectsFilterState } from "@/lib/projects/types";
+import type { ProjectsFilterState } from "@/lib/projects";
 
 import { useMemo } from "react";
 
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
-import { searchConfig } from "@/config/search";
-import { useProjectsFilterFactory } from "@/lib/projects/di";
+import { searchConfig } from "@/config";
+import { useProjectsFilterFactory } from "@/lib/projects";
 
 type Options = {
   techFilters: Map<string, TechFilter>;

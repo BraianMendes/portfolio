@@ -3,8 +3,7 @@
 import { useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { QUERY_KEYS } from "@/lib/url/queryKeys";
-import { parseArrayParam, toArrayParam } from "@/lib/url/params";
+import { QUERY_KEYS, parseArrayParam, toArrayParam } from "@/lib/url";
 
 export type ProjectsUrlSyncState = {
   selectedTags: string[];

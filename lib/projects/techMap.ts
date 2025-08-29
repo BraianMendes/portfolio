@@ -1,4 +1,4 @@
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 
 export function toTechMap(
   techFilters: TechFilter[] | Map<string, TechFilter>,
