@@ -21,6 +21,10 @@ export {
 } from "./pipeline";
 export { ProjectsRepository, projectsRepository } from "./repository";
 export type { IProjectsRepository } from "./repository.types";
+export {
+  CachingProjectsRepository,
+  LoggingProjectsRepository,
+} from "./repository.decorators";
 export { ProjectsService, defaultProjectsService } from "./service";
 export {
   NoopSort,
