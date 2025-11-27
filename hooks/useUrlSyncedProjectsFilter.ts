@@ -5,10 +5,10 @@ import type { ProjectListItem } from "@/types/domain";
 import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import { useProjectFilterState } from "@/hooks/useProjectFilterState";
 import { useFilteredProjects } from "@/hooks/useFilteredProjects";
-import { techFilters } from "@/config/tech-filters";
-import toTechMap from "@/lib/projects/techMap";
+import { techFilters } from "@/config";
+import { toTechMap } from "@/lib/projects";
 import { useProjectsUrlSync } from "@/hooks/useProjectsUrlSync";
-import { getSortStrategy } from "@/lib/projects/sortingRegistry";
+import { getSortStrategy } from "@/lib/projects";
 
 export function useUrlSyncedProjectsFilter(projects: ProjectListItem[]) {
   const { allTags, allTools } = useAvailableFilters(projects);

@@ -12,8 +12,8 @@ import { Link } from "@heroui/link";
 import NextLink from "next/link";
 import clsx from "clsx";
 
-import { Github } from "@/components/icons/index";
-import { siteConfig } from "@/config/site";
+import { Github } from "@/components/icons";
+import { siteConfig } from "@/config";
 
 const navItems = [...siteConfig.navItems];
 

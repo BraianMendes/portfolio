@@ -11,7 +11,7 @@ import {
   DataIcon,
   IoTIcon,
   PythonIcon,
-} from "@/components/icons/index";
+} from "@/components/icons";
 
 export type CertificationsTechFilter = {
   name: string;

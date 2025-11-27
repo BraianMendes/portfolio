@@ -7,11 +7,10 @@ import clsx from "clsx";
 import booksDataRaw from "./books.json";
 
 import { title } from "@/components/primitives";
-import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
+import { MultiSelectPopover } from "@/components/filters";
 import { useToggleList } from "@/hooks/useToggleList";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
-import { bookCategoryFilters } from "@/config/book-categories";
-import { getFilterLabel } from "@/config/i18n";
+import { bookCategoryFilters, getFilterLabel } from "@/config";
 
 type Book = {
   id: number;

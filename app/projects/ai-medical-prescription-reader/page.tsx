@@ -5,7 +5,7 @@ import { Card, CardBody, Chip, Button, Tooltip } from "@heroui/react";
 import data from "./ai-medical-prescription-reader.json";
 
 import Cover from "@/components/cover/Cover";
-import { Github } from "@/components/icons/index";
+import { Github } from "@/components/icons";
 
 export default function MedicalPrescriptionReaderPage() {
   const project = data;

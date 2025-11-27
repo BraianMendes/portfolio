@@ -3,7 +3,7 @@
 import type { ProjectListItem } from "@/types/domain";
 
 import { ProjectCard } from "@/components/projects/ProjectCard";
-import { getUILabel } from "@/config/i18n";
+import { getUILabel } from "@/config";
 
 type Props = {
   projects: ProjectListItem[];

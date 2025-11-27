@@ -21,13 +21,13 @@
         transparent 1px,
         transparent 29px
       ),
-        repeating-linear-gradient(
-          0deg,
-          rgba(255, 255, 255, 0.04) 0,
-          rgba(255, 255, 255, 0.04) 1px,
-          transparent 1px,
-          transparent 17.32px
-        );
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.04) 0,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px,
+        transparent 17.32px
+      );
 
     background-size: 50px 86.6px;
 

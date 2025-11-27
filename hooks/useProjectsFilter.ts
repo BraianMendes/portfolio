@@ -2,8 +2,8 @@
 
 import type { ProjectListItem } from "@/types/domain";
 
-import { techFilters } from "@/config/tech-filters";
-import { getSortStrategy } from "@/lib/projects/sortingRegistry";
+import { techFilters } from "@/config";
+import { getSortStrategy } from "@/lib/projects";
 import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import { useProjectFilterState } from "@/hooks/useProjectFilterState";
 import { useFilteredProjects } from "@/hooks/useFilteredProjects";

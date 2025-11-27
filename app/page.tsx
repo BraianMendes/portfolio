@@ -3,9 +3,9 @@
 import { button as buttonStyles } from "@heroui/theme";
 import { Link } from "@heroui/link";
 
-import { Github } from "@/components/icons/index";
+import { Github } from "@/components/icons";
 import { title, subtitle } from "@/components/primitives";
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "@/config";
 
 export default function Home() {
   return (

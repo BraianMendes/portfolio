@@ -2,13 +2,13 @@
 import { describe, it, expect } from "vitest";
 
 import type { ProjectListItem } from "@/types/domain";
-import { ByTitleAsc, ByTitleDesc, NoopSort } from "@/lib/projects/sorting";
+import { ByTitleAsc, ByTitleDesc, NoopSort } from "@/lib/projects";
 import {
   AndSpecification,
   NotSpecification,
   OrSpecification,
   TagSpecification,
-} from "@/lib/projects/specifications";
+} from "@/lib/projects";
 
 const a: ProjectListItem = {
   id: "a",

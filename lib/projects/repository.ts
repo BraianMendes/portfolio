@@ -1,5 +1,5 @@
 import type { ProjectListItem } from "@/types/domain";
-import type { IProjectsRepository } from "@/lib/projects/repository.types";
+import type { IProjectsRepository } from "@/lib/projects";
 
 import { z, type ZodIssue } from "zod";
 

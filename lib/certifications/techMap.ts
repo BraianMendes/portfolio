@@ -1,4 +1,4 @@
-import type { CertificationsTechFilter } from "@/config/certifications-tech-filters";
+import type { CertificationsTechFilter } from "@/config";
 
 export function toCertTechMap(
   filters: CertificationsTechFilter[] | Map<string, CertificationsTechFilter>,

@@ -1,13 +1,17 @@
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
-import type { SortStrategy } from "@/lib/projects/sorting";
-import type { ProjectsFilterState } from "@/lib/projects/types";
+import type { TechFilter } from "@/config";
+import type { SortStrategy } from "@/lib/projects";
+import type { ProjectsFilterState } from "@/lib/projects";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
 import type { Result } from "@/lib/result";
-import type { IProjectsRepository } from "@/lib/projects/repository.types";
+import type { IProjectsRepository } from "@/lib/projects";
 
-import { projectsRepository } from "@/lib/projects/repository";
-import { ProjectsFilterConfigurator } from "@/lib/projects/configurator";
+import { projectsRepository } from "@/lib/projects";
+import {
+  CachingProjectsRepository,
+  LoggingProjectsRepository,
+} from "@/lib/projects/repository.decorators";
+import { ProjectsFilterConfigurator } from "@/lib/projects";
 import { getDefaultSearchStrategy } from "@/lib/search/factory";
 import { ok, err } from "@/lib/result";
 
@@ -90,7 +94,11 @@ export class ProjectsService {
   }
 }
 
+const decoratedRepository = new LoggingProjectsRepository(
+  new CachingProjectsRepository(projectsRepository),
+);
+
 export const defaultProjectsService = new ProjectsService(
-  projectsRepository,
+  decoratedRepository,
   getDefaultSearchStrategy(),
 );

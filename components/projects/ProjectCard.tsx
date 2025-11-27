@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@heroui/react";
 
 import Cover from "@/components/cover/Cover";
-import { Github } from "@/components/icons/index";
+import { Github } from "@/components/icons";
 import { SmartTags } from "@/components/smart-tags";
 
 type Props = {

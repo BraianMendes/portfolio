@@ -1,5 +1,5 @@
 import type { ProjectListItem } from "@/types/domain";
-import type { TechFilter } from "@/config/tech-filters";
+import type { TechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
 
 export interface Specification<T> {

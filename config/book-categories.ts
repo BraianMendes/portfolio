@@ -7,7 +7,7 @@ import {
   Settings,
   Users,
   Palette,
-} from "@/components/icons/index";
+} from "@/components/icons";
 
 export type BookCategoryFilter = {
   name: string;

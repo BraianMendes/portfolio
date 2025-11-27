@@ -7,15 +7,17 @@ import clsx from "clsx";
 
 import certificationsData from "./certifications.json";
 
-import { X } from "@/components/icons/index";
+import { X } from "@/components/icons";
 import { title } from "@/components/primitives";
-import MultiSelectPopover from "@/components/filters/MultiSelectPopover";
+import { MultiSelectPopover } from "@/components/filters";
 import { useToggleList } from "@/hooks/useToggleList";
 import { useSearchQuery } from "@/hooks/useSearchQuery";
-import { certificationsTechFilters as techFilters } from "@/config/certifications-tech-filters";
-import toCertTechMap from "@/lib/certifications/techMap";
-import { useCertificationsFilterFactory } from "@/lib/certifications/di";
-import { getFilterLabel } from "@/config/i18n";
+import { certificationsTechFilters as techFilters } from "@/config";
+import {
+  toCertTechMap,
+  useCertificationsFilterFactory,
+} from "@/lib/certifications";
+import { getFilterLabel } from "@/config";
 
 type CertType = (typeof certificationsData)[number];
 

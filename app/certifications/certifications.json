@@ -5,10 +5,7 @@
     "issuer": "Cisco",
     "date": "2025-05-26",
     "image": "/certifications/cisco/introduction-to-modern-ai.png",
-    "tags": [
-      "AI",
-      "Cisco"
-    ],
+    "tags": ["AI", "Cisco"],
     "slug": "cisco-modern-ai",
     "certificateUrl": "https://www.credly.com/badges/d089d3cc-5253-44d3-902f-a91940fc5be7"
   },
@@ -18,13 +15,7 @@
     "issuer": "Cisco",
     "date": "2025-05-28",
     "image": "/certifications/cisco/introduction-to-data-science.png",
-    "tags": [
-      "AI",
-      "Big Data",
-      "Data Science",
-      "Data Analytics",
-      "Cisco"
-    ],
+    "tags": ["AI", "Big Data", "Data Science", "Data Analytics", "Cisco"],
     "slug": "cisco-introduction-to-data-science",
     "certificateUrl": "https://www.credly.com/badges/9f24248d-22dc-449f-8208-f82410923e83/public_url"
   },
@@ -34,11 +25,7 @@
     "issuer": "AWS",
     "date": "2025-05-31",
     "image": "/certifications/aws/foundations-of-prompt-engineering.png",
-    "tags": [
-      "AI",
-      "Prompt Engineering",
-      "AWS"
-    ],
+    "tags": ["AI", "Prompt Engineering", "AWS"],
     "slug": "aws-foundations-of-prompt-engineering"
   },
   {
@@ -47,13 +34,7 @@
     "issuer": "Cisco",
     "date": "2025-06-08",
     "image": "/certifications/cisco/introduction-to-iot.png",
-    "tags": [
-      "AI",
-      "IoT",
-      "Big Data",
-      "Data Science",
-      "Cisco"
-    ],
+    "tags": ["AI", "IoT", "Big Data", "Data Science", "Cisco"],
     "slug": "cisco-introduction-to-iot",
     "certificateUrl": "https://www.credly.com/badges/69c87b58-9680-4935-abae-8eae5513dd6a/public_url"
   },
@@ -63,10 +44,7 @@
     "issuer": "Cisco",
     "date": "2025-06-08",
     "image": "/certifications/cisco/python-essentials-1.1.png",
-    "tags": [
-      "Python",
-      "Cisco"
-    ],
+    "tags": ["Python", "Cisco"],
     "slug": "cisco-python-essentials-1.1",
     "certificateUrl": "https://www.credly.com/badges/69c87b58-9680-4935-abae-8eae5513dd6a/public_url"
   },
@@ -76,10 +54,7 @@
     "issuer": "Cisco",
     "date": "2025-06-16",
     "image": "/certifications/cisco/python-essentials-2.png",
-    "tags": [
-      "Python",
-      "Cisco"
-    ],
+    "tags": ["Python", "Cisco"],
     "slug": "cisco-python-essentials-2",
     "certificateUrl": "https://www.credly.com/badges/0fd37988-daab-4169-8c88-8b7453021e2b/public_url"
   },
@@ -89,13 +64,7 @@
     "issuer": "Gran",
     "date": "2025-06-11",
     "image": "/certifications/gran/data-analysis-and-business-intelligence.png",
-    "tags": [
-      "Data Analytics",
-      "BI",
-      "R",
-      "RStudio",
-      "Gran"
-    ],
+    "tags": ["Data Analytics", "BI", "R", "RStudio", "Gran"],
     "slug": "gran-data-analysis-and-business-intelligence"
   },
   {
@@ -104,13 +73,7 @@
     "issuer": "Gran",
     "date": "2025-06-12",
     "image": "/certifications/gran/legal-responsibility-in-digital-environments.png",
-    "tags": [
-      "Data Protection",
-      "Digital Law",
-      "GDPR",
-      "LGPD",
-      "Gran"
-    ],
+    "tags": ["Data Protection", "Digital Law", "GDPR", "LGPD", "Gran"],
     "slug": "gran-legal-responsibility-in-digital-environments"
   },
   {

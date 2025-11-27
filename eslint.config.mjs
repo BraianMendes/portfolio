@@ -96,7 +96,7 @@ export default defineConfig([
       "react/prop-types": "off",
       "react/jsx-uses-react": "off",
       "react/react-in-jsx-scope": "off",
-  "react-hooks/exhaustive-deps": "warn",
+      "react-hooks/exhaustive-deps": "warn",
       "jsx-a11y/click-events-have-key-events": "warn",
       "jsx-a11y/interactive-supports-focus": "warn",
       // Allow platform-specific line endings to avoid CRLF/LF churn on Windows
@@ -115,7 +115,7 @@ export default defineConfig([
         "warn",
         { prefer: "type-imports", fixStyle: "separate-type-imports" },
       ],
-  "@typescript-eslint/prefer-readonly": "off",
+      "@typescript-eslint/prefer-readonly": "off",
 
       "@typescript-eslint/no-unused-vars": [
         "warn",

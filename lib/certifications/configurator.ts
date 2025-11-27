@@ -1,12 +1,12 @@
 import type { Certification } from "@/types/domain";
-import type { CertificationsTechFilter } from "@/config/certifications-tech-filters";
+import type { CertificationsTechFilter } from "@/config";
 import type { NormalizableProject, SearchStrategy } from "@/lib/search/text";
 import type { SortStrategy } from "@/lib/projects/sorting";
 
 import {
   filterCertifications,
   type CertificationsFilterState,
-} from "@/lib/certifications/filtering";
+} from "@/lib/certifications";
 import { getDefaultSearchStrategy } from "@/lib/search/factory";
 
 export class CertificationsFilterConfigurator {

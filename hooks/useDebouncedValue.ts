@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { searchConfig } from "@/config/search";
+import { searchConfig } from "@/config";
 
 export function useDebouncedValue<T>(
   value: T,

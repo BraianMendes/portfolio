@@ -4,7 +4,7 @@ import { Card, CardBody, Chip, Button, Tooltip } from "@heroui/react";
 import data from "./ai-client-reports.json";
 
 import Cover from "@/components/cover/Cover";
-import { Github, Bot, Database, FileText, Zap } from "@/components/icons/index";
+import { Github, Bot, Database, FileText, Zap } from "@/components/icons";
 
 export default function AIClientReportsPage() {
   const project = data;

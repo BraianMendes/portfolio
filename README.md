@@ -74,4 +74,3 @@ Contributions are welcome! If you have suggestions or find issues, please open a
 - **GitHub**: [github.com/braianmendes](https://github.com/braianmendes)
 
 Thank you for visiting my portfolio.
-
